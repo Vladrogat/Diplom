@@ -1,6 +1,17 @@
-body, html { 
-width: 100%;
-height: 100%;
+body, html {
+    width: 100%;
+    height: 100%;
+}
+main{
+    height: max-content;
+    min-height: 50%;
+}
+a {
+    text-decoration: none;
+    color:#fff;
+}
+a:hover {
+    color:#fff;
 }
 .m-5px {
     margin: 5px;
@@ -24,15 +35,15 @@ align-items: center;
     height: 100%;
 }
 .all {
-min-width: 100%;
-min-height: 100%;
-position: relative;
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
 }
 .wraper {
     background-color: rgba(6, 36, 56, 0.568);
 }
 .back{
-
+    padding: 0;
     background-position: center;
     background-repeat: no-repeat;
     height: 100%;
@@ -40,36 +51,56 @@ position: relative;
     background-size: cover;
 }
 .bd-placeholder-img {
-font-size: 1.125rem;
-text-anchor: middle;
--webkit-user-select: none;
--moz-user-select: none;
-user-select: none;
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
+/* Стили навигации */
+
 .nav-link {
+    line-height: 2; /*задаём высоту строки*/
     color: aliceblue;
     font-size: 18px;
     font-weight: 500;
-    transition: all 1s;
+    transition: all .4s;
 }
-
 .active {
+    transition: all 1s;
     background-color: rgba(11, 58, 90, 0.479);
     color: rgb(0, 183, 255);
-    border-color: rgb(0, 183, 255);
-    border-bottom: 6px solid;
-    border-radius: 2px;
+    border-radius: 3px;
 }
+.nav a.active:after {
+    height: 5px;
+}
+.nav a:after {
+    display: block;
+    left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
+    width: 100%;/*задаём длинну линии до наведения курсора*/
+    height: 0; /*задаём ширину линии*/
+    background-color: rgb(0, 184, 236); /*задаём цвет линии*/
+    border-radius: 2px;
+    content: "";
+    transition: height 0.3s ease-in-out; /*задаём время анимации*/
+}
+.nav a:hover:after,
+.nav a:focus:after {
+    height: 5px;
+}
+
 .nav-link:hover {
     color: rgb(0, 183, 255);
 }
-
 .foot {
     font-style: italic;
 }
 
-.h {
+
+
+.title_logo {
     margin: 3px;
     line-height: .1;
     text-align: center;
@@ -78,8 +109,10 @@ user-select: none;
 
 .text {
     margin: 5px 10px;
-    font-size: 16pt;
+    font-size: 17pt;
+    font-min-size: larger;
 }
+
 
 .d-flex {
     display: flex;
@@ -91,13 +124,34 @@ user-select: none;
     align-items: center;
 }
 .display-in-block {
-    display: inline-block; 
-} 
-.pos{
-
+    display: inline-block;
 }
+
 @media (min-width: 768px) {
 .bd-placeholder-img-lg {
     font-size: 3.5rem;
 }
 }
+@media (max-width: 992px) {
+    nav .nav {
+        display: none;
+    }
+}
+/* Стили теории */
+
+.theory-link {
+    color: burlywood;
+    transition: all 0.3s;
+}
+
+.theory-link:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    color: rgb(230, 166, 84)
+}
+
+.header_logo {
+    margin: 5px 0px;
+}
+
+
