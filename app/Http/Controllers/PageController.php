@@ -29,19 +29,6 @@ class PageController extends Controller
         $name = "";
         $slug = "";
 
-        $chapters["chapters"][] = [
-            "name" => "Новое",
-            "sections" => [
-                "Явление индукции" => [
-                    "url" => "",
-                    "docs" => ""
-                ],
-                "Высокое напряжение" => [
-                    "url" => "",
-                    "docs" => ""
-                ]
-            ]
-        ];
         File::put($path, json_encode($chapters));
         return redirect(view("pages.theory", compact('chapters')));
     }
