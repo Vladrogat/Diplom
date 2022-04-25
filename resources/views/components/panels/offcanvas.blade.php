@@ -1,4 +1,4 @@
-<div class="form-auth offcanvas offcanvas-start "
+<div class="form-auth offcanvas offcanvas-start"
      tabindex="-1" id="offcanvas{{$name}}" aria-labelledby="offcanvas{{$name}}Label">
     <div class="offcanvas-header">
         <h4 class="offcanvas-title title" id="offcanvas{{$name}}Label">
