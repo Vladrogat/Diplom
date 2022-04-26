@@ -24,8 +24,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            "login" => "bail|required|min:4|max:100",
-            'password' => "bail|required|min:4|max:100"
+            "login" => "bail|required|min:4|max:100|exists:users",
+            'password' => "bail|required|min:4|max:100|exists:users"
         ];
     }
 }

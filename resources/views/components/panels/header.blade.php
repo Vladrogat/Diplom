@@ -12,20 +12,21 @@
         <nav class="nav nav-masthead justify-content-center float-md-end">
             @if(empty($user))
                 <a data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin"
-                   class="nav-link {{request()->routeIs('#') ?  'active': ''}}" href="#">Войти</a>
-                <a data-bs-toggle="offcanvas" href="#offcanvasRegistr" role="button" aria-controls="offcanvasRegistr"
-                   class="nav-link {{request()->routeIs('#') ?  'active': ''}}" href="#">Регистрация</a>
-                <x-panels.offcanvas name="Login"/>
-                <x-panels.offcanvas name="Registr"/>
+                   class="nav-link" href="#">Войти</a>
+                <a data-bs-toggle="offcanvas" href="#offcanvasRegistration" role="button" aria-controls="offcanvasRegistr"
+                   class="nav-link" href="#">Регистрация</a>
+                <x-panels.offcanvas name="Login" :errors="$errors"/>
+                <x-panels.offcanvas name="Registration" :errors="$errors"/>
             @else
-                <a class="nav-link {{request()->routeIs('#') ?  'active': ''}}" href="{{route('profile', $user)}}"><?=$user->login?></a>
-                <a class="nav-link {{request()->routeIs('#') ?  'active': ''}}" href="{{route("logout")}}">Выйти</a>
+                <a class="nav-link text-truncate"
+                   href="{{route('profile', $user)}}" title="{{$user->login}}" style="max-width: 250px;">{{$user->login}}</a>
+                <a class="nav-link" href="{{route("logout")}}">Выйти</a>
             @endif
 
             <div class="nav nav-masthead menu">
                 <a class="nav-link {{request()->routeIs('home') ?  'active': ''}}" aria-current="page" href="{{route('home')}}">Главная</a>
                 <a class="nav-link {{request()->routeIs('theory') ?  'active': ''}}" href="{{route('theory')}}">Теория</a>
-                <a class="nav-link {{request()->routeIs('') ?  'active': ''}}" href="#">Тестирование</a>
+                <a class="nav-link {{request()->routeIs('tests.index') ?  'active': ''}}" href="{{route("tests.index")}}">Тестирование</a>
             </div>
 
             <div class="burger-btn float-md-end">
@@ -39,7 +40,7 @@
                 <ul id="menu" class="menu-burger dropdown-menu" aria-labelledby="dropdown" data-bs-popper="none">
                     <a class="nav-link {{request()->routeIs('home') ?  'active': ''}}" aria-current="page" href="{{route('home')}}">Главная</a>
                     <a class="nav-link {{request()->routeIs('theory') ?  'active': ''}}" href="{{route('theory')}}">Теория</a>
-                    <a class="nav-link {{request()->routeIs('add') ?  'active': ''}}" href="#">Тестирование</a>
+                    <a class="nav-link {{request()->routeIs('tests.index') ?  'active': ''}}" href="{{route("tests.index")}}">Тестирование</a>
                 </ul>
             </div>
         </nav>
