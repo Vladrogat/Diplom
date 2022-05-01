@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
-class TestController extends Controller
+class QuestionController extends Controller
 {
     public function index()
     {
-        return PageController::viewer("pages.tests.index");
+
     }
-    public function show()
+    public function show(Request $request)
     {
 
     }

@@ -1,0 +1,46 @@
+:root{
+    --color-panel-black: rgba(0, 0, 0, 0.3);
+    --color-panel-blue: rgba(7, 90, 115, 0.41);
+}
+.row {
+    margin: auto;
+}
+@media (min-width: 992px) {
+    .card-test {
+        max-width: max-content;
+    }
+    .row {}
+}
+.title {
+    margin-bottom: 20px;
+}
+.card-test {
+    position: relative;
+    box-sizing: border-box;
+    background: var(--color-panel-blue);
+    border-radius: 20px;
+    margin: 5px;
+}
+.card-body {
+    height: 100%;
+}
+.card-title {
+    font-size: 18pt;
+    width: max-content;
+}
+.bottom_block {
+    display: inline-block;
+    width: 100%;
+    margin-top: auto;
+}
+.time_block {
+    position: relative;
+    top: 50%;
+    transform: translate(0, 50%);
+}
+.btn-start {
+    font-size: 15pt;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+

@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\PageController;
 use \App\Http\Controllers\AuthController;
-use \App\Http\Controllers\TestController;
+use \App\Http\Controllers\QuestionController;
+use \App\Http\Controllers\SectionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +25,16 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/theory', "theory")->name('theory');
 });
 
-//Route::controller(TestController::class)->group(function () {
+//Route::controller(QuestionController::class)->group(function () {
 
-    Route::resource('tests', TestController::class);
+    Route::resource('sections/question', QuestionController::class);
 
 //});
+
+Route::controller(SectionController::class)->group(function () {
+    Route::get('/sections', "index")->name('sections.index');
+    Route::post('/sections/{section}', "show")->name('sections.show');
+});
 /*
  * Маршруты пост-запросов аутентификации
  */

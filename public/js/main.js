@@ -1,3 +1,4 @@
+
 const animElems = document.querySelectorAll(".lines");
 
 /*
@@ -15,7 +16,6 @@ document.onclick = function(e){
         }
     }
 };
-
 function clickMenu() {
     if (animElems.length > 0) {
         console.log(2);

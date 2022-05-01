@@ -26,7 +26,7 @@
             <div class="nav nav-masthead menu">
                 <a class="nav-link {{request()->routeIs('home') ?  'active': ''}}" aria-current="page" href="{{route('home')}}">Главная</a>
                 <a class="nav-link {{request()->routeIs('theory') ?  'active': ''}}" href="{{route('theory')}}">Теория</a>
-                <a class="nav-link {{request()->routeIs('tests.index') ?  'active': ''}}" href="{{route("tests.index")}}">Тестирование</a>
+                <a class="nav-link {{request()->routeIs('sections.index') ?  'active': ''}}" href="{{route("sections.index")}}">Тестирование</a>
             </div>
 
             <div class="burger-btn float-md-end">
@@ -40,7 +40,7 @@
                 <ul id="menu" class="menu-burger dropdown-menu" aria-labelledby="dropdown" data-bs-popper="none">
                     <a class="nav-link {{request()->routeIs('home') ?  'active': ''}}" aria-current="page" href="{{route('home')}}">Главная</a>
                     <a class="nav-link {{request()->routeIs('theory') ?  'active': ''}}" href="{{route('theory')}}">Теория</a>
-                    <a class="nav-link {{request()->routeIs('tests.index') ?  'active': ''}}" href="{{route("tests.index")}}">Тестирование</a>
+                    <a class="nav-link {{request()->routeIs('sections.index') ?  'active': ''}}" href="{{route("sections.index")}}">Тестирование</a>
                 </ul>
             </div>
         </nav>

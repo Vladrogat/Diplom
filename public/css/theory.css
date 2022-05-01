@@ -1,3 +1,4 @@
+
 .theory {
     display: flex;
     width: 100%;
@@ -9,5 +10,7 @@
     text-align: left;
 }
 .accordion-item, .accordion-header, .accordion-button, .accordion-collapse {
+//color: white;
+    //background: var(--color-panel-blue);
     transition: all .4s ease-in-out;
 }
