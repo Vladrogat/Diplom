@@ -21,13 +21,9 @@ class AuthController extends Controller
         }
         $fields = $request->validated();
         if (Auth::attempt($fields)) {
-
-            $user = User::where('login', $fields["login"]);
-            dd($user);
-
-            Auth::login($user);
+            return redirect(route("profile", Auth::user()));
         }
-        return redirect(route("profile", Auth::user()));
+        //return redirect(route("home"));
     }
 
     /**
@@ -35,7 +31,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function regis(Request $request)
+    public function registration(Request $request)
     {
         if (Auth::check()) {
             return redirect(route("profile", Auth::user()));
@@ -43,9 +39,10 @@ class AuthController extends Controller
         $fields = $request->validate([
             "email" => "bail|required|email",
             "login" => "bail|required|min:4|max:100",
-            'password' => "bail|required|min:4|max:100"
+            'password' => "bail|required|min:4|max:100",
+            'confirm' => "bail|required|min:4|max:100"
         ]);
-        if (trim($fields["password"]) === trim($request["confirm"])) {
+        if (trim($fields["password"]) === trim($fields["confirm"])) {
 
             $user = new User();
             $user->login = $fields["login"];
@@ -59,7 +56,7 @@ class AuthController extends Controller
             }
         }
         return redirect(route("home"))->withErrors([
-            "formsErrors" => "Произошла ошибка сохранения пользователя"
+            "errors" => "Произошла ошибка сохранения пользователя"
         ]);
     }
 

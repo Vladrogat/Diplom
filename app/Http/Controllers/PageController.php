@@ -2,45 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\File;
 class PageController extends Controller
 {
     /**
-     * Метод перехода на главную страницу
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * Метод для передачи аутентифицированного пользователя в представление
+     * @param string $view
+     * @param array $data
+     * @return Application|Factory|View
      */
-    public function home()
+    public static function viewer(string $view = "", array $data = []): View|Factory|Application
     {
         $user = Auth::user();
-        return view('pages.homePage', compact("user"));
+        $data["user"] = $user;
+        return view($view, $data);
+    }
+
+    /**
+     * Метод перехода на главную страницу
+     * @return Application|Factory|View
+     */
+    public function home(): View|Factory|Application
+    {
+        return self::viewer('pages.homePage');
     }
 
     /**
      * Метод перехода на страницу с теорией
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
-    public function  theory()
-    {
-        $user = Auth::user();
-
-        $path = public_path() . "/data/chapters.json";
-        $json = File::get($path);
-        $chapters = json_decode($json, true);
-        return view("pages.theory", compact('chapters', 'user'));
-    }
-
-    public function add()
+    public function  theory(): View|Factory|Application
     {
         $path = public_path() . "/data/chapters.json";
         $json = File::get($path);
         $chapters = json_decode($json, true);
-
-        $name = "";
-        $slug = "";
-
-        File::put($path, json_encode($chapters));
-        return redirect(view("pages.theory", compact('chapters')));
+        return self::viewer("pages.theory", compact('chapters'));
     }
+
 }

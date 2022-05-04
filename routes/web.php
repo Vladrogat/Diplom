@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\PageController;
 use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\QuestionController;
+use \App\Http\Controllers\SectionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,22 +18,30 @@ use \App\Http\Controllers\AuthController;
 
 
 /*
- * Маршруты гет запросов перехода между страницами
+ * Маршруты гет-запросов перехода между страницами
  */
 Route::controller(PageController::class)->group(function () {
-
     Route::get('/', "home")->name('home');
     Route::get('/theory', "theory")->name('theory');
-
 });
 
+//Route::controller(QuestionController::class)->group(function () {
+
+    Route::resource('sections/question', QuestionController::class);
+
+//});
+
+Route::controller(SectionController::class)->group(function () {
+    Route::get('/sections', "index")->name('sections.index');
+    Route::post('/sections/{section}', "show")->name('sections.show');
+});
 /*
- * Маршруты пост запросов аутентификации
+ * Маршруты пост-запросов аутентификации
  */
 Route::controller(AuthController::class)->group( function () {
 
     Route::post("/login", [AuthController::class, "login"])->name("login");
-    Route::post("/regis", [AuthController::class, "regis"])->name("regis");
+    Route::post("/registration", [AuthController::class, "registration"])->name("registration");
     Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 });
 
