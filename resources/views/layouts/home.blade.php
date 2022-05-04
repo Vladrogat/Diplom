@@ -11,7 +11,7 @@
     <div class="container-fluid back">
         <div class="w-100 h-100 wraper">
             <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
-                <x-panels.header/>
+                <x-panels.header :user="$user"/>
                 <main class="px-3">
                     @yield('content')
                 </main>
@@ -22,5 +22,6 @@
     </div>
 
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

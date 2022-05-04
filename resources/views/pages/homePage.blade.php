@@ -13,9 +13,9 @@
                 <a class="theory-link">электромегнетизму</a> и
                 <a class="theory-link">электромагнитной индукции</a>
             </span></p>
-        <p class="text m-5px lead">
+        <p class=" m-5px lead">
             <a href="#"
-            class="btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">
+            class="text btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">
                 Начать тестирование
             </a>
         </p>

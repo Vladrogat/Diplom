@@ -40,14 +40,14 @@ align-items: center;
     position: relative;
 }
 .wraper {
-    background-color: rgba(6, 36, 56, 0.568);
+    background-color: rgba(4, 25, 38, 0.72);
 }
 .back{
     padding: 0;
     background-position: center;
     background-repeat: no-repeat;
     height: 100%;
-    background-image: url(https://avatanplus.com/files/resources/original/5a37d567ccc781606a199d9f.jpg);
+    background-image: url("/images/back.jpg");
     background-size: cover;
 }
 .bd-placeholder-img {
@@ -59,7 +59,9 @@ align-items: center;
 }
 
 /* Стили навигации */
-
+.nav.nav-masthead {
+    box-sizing: border-box;
+}
 .nav-link {
     line-height: 2; /*задаём высоту строки*/
     color: aliceblue;
@@ -69,26 +71,26 @@ align-items: center;
 }
 .active {
     transition: all 1s;
-    background-color: rgba(11, 58, 90, 0.479);
+    background-color: rgba(17, 69, 107, 0.48);
     color: rgb(0, 183, 255);
     border-radius: 3px;
 }
-.nav a.active:after {
-    height: 5px;
+.nav a.nav-link.active:after {
+    height: 4px;
 }
-.nav a:after {
+.nav a.nav-link:after {
     display: block;
     left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
-    width: 100%;/*задаём длинну линии до наведения курсора*/
+    width: 100%;
     height: 0; /*задаём ширину линии*/
     background-color: rgb(0, 184, 236); /*задаём цвет линии*/
     border-radius: 2px;
     content: "";
     transition: height 0.3s ease-in-out; /*задаём время анимации*/
 }
-.nav a:hover:after,
-.nav a:focus:after {
-    height: 5px;
+.nav a.nav-link:hover:after,
+.nav a.nav-link:focus:after {
+    height: 4px;
 }
 
 .nav-link:hover {
@@ -109,7 +111,7 @@ align-items: center;
 
 .text {
     margin: 5px 10px;
-    font-size: 17pt;
+    font-size: 20pt;
     font-min-size: larger;
 }
 
@@ -127,14 +129,36 @@ align-items: center;
     display: inline-block;
 }
 
-@media (min-width: 768px) {
-.bd-placeholder-img-lg {
-    font-size: 3.5rem;
-}
-}
+
+
 @media (max-width: 992px) {
     nav .nav {
         display: none;
+    }
+}
+@media (max-width: 1200px) {
+    .nav.menu {
+        margin-left: 0;
+    }
+}
+@media (min-width: 993px) {
+    .burger-btn {
+        display: none;
+    }
+    .navbar-collapse.collapse{
+        display: none;
+    }
+}
+@media (max-width: 575px) {
+    .text {
+        margin: 5px 10px;
+        font-size: 5vw;
+        font-min-size: larger;
+    }
+}
+@media (max-width: 425px) {
+    .dropdown-menu {
+        background-color: rgb(0, 0, 0);
     }
 }
 /* Стили теории */
@@ -154,4 +178,106 @@ align-items: center;
     margin: 5px 0px;
 }
 
+.dropdown-toggle::after {
+    display: none;
+}
+.dropdown-menu {
+    background-color: rgba(35, 84, 140, 0.83);
+}
+.nav.menu {
+    margin-left: 10px;
+}
 
+.navbar-toggler{
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    background-size: 100%;
+}
+.navbar-toggler-icon {
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/images/icon-menu.png");
+}
+
+
+
+
+.burger {
+    position: relative;
+    margin: 5px 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+.burger-btn {
+    height: 100%;
+}
+.menu-burger {
+    padding: 5px 5px;
+}
+.lines {
+    position: relative;
+    transition: transform .25s ease-in-out;
+    margin: 5px 0;
+    display: block;
+    border: 2px solid white;
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+}
+.burger:focus {
+    outline: none;
+}
+.burger .lines.up.active{
+    top: 8px;
+    transform: rotate(45deg);
+}
+.burger .lines.mid.active{
+    transform: rotate(-45deg);
+}
+.burger .lines.down.active{
+    bottom: 10px;
+    transform: rotate(45deg);
+ }
+
+
+/* Стили форм */
+.title {
+    color: white;
+    margin: 5px 10px;
+}
+.lable {
+    font-size:large;
+}
+.form-control{
+    color: white;
+    font-size: 17pt;
+
+    padding: 100px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid white;
+    border-radius: 0;
+}
+.form-control:active, .form-control:hover, .form-control:focus {
+    color: white;
+    font-size: 17pt;
+    outline: none;
+    background: none;
+    outline: 0;
+    outline-offset: 0;
+}
+.form-auth {
+    min-width: max-content;
+    background-color: rgba(87, 184, 225, 0.45);
+    border-radius: 5px;
+}
+
+.btn-submit {
+    font-size: 15pt;
+    margin-top: 10px;
+    border-radius: 10px;
+    min-width: 100px;
+    max-width: max-content;
+}
