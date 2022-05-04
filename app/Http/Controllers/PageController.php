@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+
 class PageController extends Controller
 {
     /**
@@ -19,7 +21,9 @@ class PageController extends Controller
     public static function viewer(string $view = "", array $data = []): View|Factory|Application
     {
         $user = Auth::user();
+        $typeError = Session::get("typeError", "");
         $data["user"] = $user;
+        $data["typeError"] = $typeError;
         return view($view, $data);
     }
 

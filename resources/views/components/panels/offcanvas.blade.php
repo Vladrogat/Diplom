@@ -15,9 +15,9 @@
     </div>
     <div class="offcanvas-body">
         @if($name == "Login")
-            <x-panels.login :errros="$errors"></x-panels.login>
+            <x-panels.login :errros="$errors" :typeError="$typeError"></x-panels.login>
         @else
-            <x-panels.registration :errros="$errors"></x-panels.registration>
+            <x-panels.registration :errros="$errors" :typeError="$typeError"></x-panels.registration>
         @endif
     </div>
 </div>

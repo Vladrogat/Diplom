@@ -13,6 +13,7 @@ class SectionController extends Controller
         $sections = Section::all();
         return PageController::viewer("pages.sections.index", compact('sections'));
     }
+
     public function show(Request $request, Section $section)
     {
 
