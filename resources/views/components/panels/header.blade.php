@@ -15,8 +15,8 @@
                    class="nav-link" href="#">Войти</a>
                 <a data-bs-toggle="offcanvas" href="#offcanvasRegistration" role="button" aria-controls="offcanvasRegistr"
                    class="nav-link" href="#">Регистрация</a>
-                <x-panels.offcanvas name="Login" :errors="$errors"/>
-                <x-panels.offcanvas name="Registration" :errors="$errors"/>
+                <x-panels.offcanvas name="Login" :errors="$errors" :typeError="$typeError"/>
+                <x-panels.offcanvas name="Registration" :errors="$errors" :typeError="$typeError"/>
             @else
                 <a class="nav-link text-truncate"
                    href="{{route('profile', $user)}}" title="{{$user->login}}" style="max-width: 250px;">{{$user->login}}</a>

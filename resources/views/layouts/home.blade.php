@@ -9,9 +9,8 @@
 </head>
 <body class="d-flex h-100 text-center text-white back">
     <div class="container-fluid wraper">
-
             <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
-                <x-panels.header :user="$user" :errors="$errors"/>
+                <x-panels.header :user="$user" :errors="$errors" :typeError="$typeError"/>
                 <main>
                     @yield('content')
                 </main>

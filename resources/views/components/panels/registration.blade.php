@@ -1,4 +1,4 @@
-@if($errors->count())
+@if($errors->count() && $typeError == "registration")
     @foreach($errors->all() as $error)
         <div class="error">
             {{$error}}

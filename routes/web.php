@@ -40,9 +40,9 @@ Route::controller(SectionController::class)->group(function () {
  */
 Route::controller(AuthController::class)->group( function () {
 
-    Route::post("/login", [AuthController::class, "login"])->name("login");
-    Route::post("/registration", [AuthController::class, "registration"])->name("registration");
-    Route::get("/logout", [AuthController::class, "logout"])->name("logout");
+    Route::post("/login", "login")->name("login");
+    Route::post("/registration", "registration")->name("registration");
+    Route::get("/logout", "logout")->name("logout");
 });
 
 /*
