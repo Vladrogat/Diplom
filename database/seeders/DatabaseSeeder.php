@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table("users")->insert([
-            "admin" => true,
+            "is_admin" => true,
             "login" => "admin",
             "email" => "rogatih2017@yandex.ru",
             "password" => "qwerty",
@@ -42,6 +42,10 @@ class DatabaseSeeder extends Seeder
                 "idChapter" => 1
             ],
             [
+                "name" => "Основные характеристики магнитного поля",
+                "idChapter" => 1
+            ],
+            [
                 "name" => "Явление электромагнитной индукции",
                 "idChapter" => 2
             ],
@@ -50,6 +54,7 @@ class DatabaseSeeder extends Seeder
                 "idChapter" => 2
             ]
         ]);
+
         DB::table("type_questions")->insert([
             [
                 "name" => "Один ответ",
@@ -61,7 +66,11 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 "name" => "Написать ответ",
-                "time" => 45,
+                "time" => 60,
+            ],
+            [
+                "name" => "Сопоставить определния",
+                "time" => 50,
             ],
         ]);
         DB::table("answers")->insert([

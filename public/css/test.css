@@ -5,11 +5,10 @@
 .row {
     margin: auto;
 }
-@media (min-width: 992px) {
-    .card-test {
-        max-width: max-content;
+@media (min-width: 767px) {
+    .card-title {
+        width: max-content;
     }
-    .row {}
 }
 .title {
     margin-bottom: 20px;
@@ -25,8 +24,8 @@
     height: 100%;
 }
 .card-title {
-    font-size: 18pt;
-    width: max-content;
+    display: inline-block;
+    text-align: center;
 }
 .bottom_block {
     display: inline-block;

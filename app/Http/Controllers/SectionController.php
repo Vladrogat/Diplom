@@ -16,6 +16,7 @@ class SectionController extends Controller
 
     public function show(Request $request, Section $section)
     {
+        $section["name"] = str_replace(" ", "_", $section["name"]);
 
     }
 }
