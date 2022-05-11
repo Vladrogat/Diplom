@@ -13,6 +13,6 @@
     <x-inputs.group for="password" title="Пароль" helpText="">
         <x-inputs.password id="password" name="password" :old="old('password')"  place="qwerty"/>
     </x-inputs.group>
-    <x-inputs.submit text="Войти"/>
+    <x-inputs.submit text="Войти" pos="start"/>
 </form>
 

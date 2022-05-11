@@ -33,7 +33,7 @@ Route::controller(PageController::class)->group(function () {
 
 Route::controller(SectionController::class)->group(function () {
     Route::get('/sections', "index")->name('sections.index');
-    Route::post('/sections/{section}', "show")->name('sections.show');
+    Route::get('/sections/{section}', "show")->name('sections.show');
 });
 /*
  * Маршруты пост-запросов аутентификации

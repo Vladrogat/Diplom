@@ -5,11 +5,7 @@
 .row {
     margin: auto;
 }
-@media (min-width: 767px) {
-    .card-title {
-        width: max-content;
-    }
-}
+
 .title {
     margin-bottom: 20px;
 }
@@ -27,6 +23,12 @@
     display: inline-block;
     text-align: center;
 }
+@media (min-width: 767px) {
+    .card-title {
+        width: max-content;
+    }
+}
+
 .bottom_block {
     display: inline-block;
     width: 100%;
@@ -43,3 +45,11 @@
     border-radius: 10px;
 }
 
+.start-test {
+    color: white;
+    font-size: 17pt;
+    border-radius: 15px;
+
+    background: #0d6efd;
+    width: 200px;
+}

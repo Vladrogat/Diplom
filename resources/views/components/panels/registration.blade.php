@@ -20,5 +20,5 @@
         <x-inputs.password id="confirm" old="" name="confirm" place=""/>
     </x-inputs.group>
 
-    <x-inputs.submit text="Регистрация"/>
+    <x-inputs.submit text="Регистрация" pos="start"/>
 </form>

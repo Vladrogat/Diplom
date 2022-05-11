@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -27,11 +28,9 @@ class AuthController extends Controller
         Session::put("typeError", "login");
         $fields = $request->validate([
             "login" => "bail|required|min:4|max:100|exists:users,login",
-            "password" => "bail|required|min:4|max:100|exists:users,password"
+            "password" => "bail|required|min:4|max:100"
         ]);
-        $user = User::where("login", "=", $fields["login"])->first();
-        if ($user) {
-            Auth::login($user);
+        if (Auth::attempt($fields)) {
             return redirect(route("profile", Auth::user()));
         }
     }

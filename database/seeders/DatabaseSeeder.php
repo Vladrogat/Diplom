@@ -18,12 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("users")->insert([
+        User::factory(1)->create([
             "is_admin" => true,
             "login" => "admin",
             "email" => "rogatih2017@yandex.ru",
             "password" => "qwerty",
         ]);
+
         DB::table("chapters")->insert([
             [
                 "name" => "Электромагнетизм"
