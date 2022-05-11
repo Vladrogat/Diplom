@@ -11,25 +11,34 @@ class QuestionController extends Controller
     {
 
     }
+
     public function show(Request $request)
     {
 
     }
+
     public function create()
     {
 
     }
+
     public function store(Request $request)
     {
 
     }
+
     public function edit()
     {
 
     }
+
     public function update(Request $request)
     {
 
     }
 
+    public function delete()
+    {
+
+    }
 }
