@@ -1,6 +1,6 @@
 :root{
     --color-panel-black: rgba(0, 0, 0, 0.3);
-    --color-panel-blue: rgba(7, 90, 115, 0.41);
+    --color-panel-blue: rgba(7, 90, 115, 0.39);
 
     --color-back-blue: rgba(4, 25, 38, 0.72);
     --color-back-black: rgba(0, 0, 0, 0.8);
@@ -163,7 +163,7 @@ align-items: center;
 @media (max-width: 575px) {
     .text {
         margin: 5px 10px;
-        font-size: 5vw;
+        font-size: 4vw;
         font-min-size: larger;
     }
 }
@@ -193,7 +193,7 @@ align-items: center;
     display: none;
 }
 .dropdown-menu {
-    background-color: rgba(35, 84, 140, 0.83);
+    background-color: rgba(7, 70, 115, 0.6);
 }
 .nav.menu {
     margin-left: 10px;

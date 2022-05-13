@@ -12,7 +12,8 @@
                 а так же изучить материал посвященный
                 <a class="theory-link">электромегнетизму</a> и
                 <a class="theory-link">электромагнитной индукции</a>
-            </span></p>
+            </span>
+        </p>
         <p class=" m-5px lead">
             <a href="#"
             class="text btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">

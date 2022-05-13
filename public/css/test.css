@@ -1,6 +1,10 @@
 :root{
     --color-panel-black: rgba(0, 0, 0, 0.3);
-    --color-panel-blue: rgba(7, 90, 115, 0.41);
+    --color-panel-blue: rgba(7, 90, 115, 0.32);
+
+    --color-btn-test: rgba(75, 104, 180, 0.29);
+    --color-btn-test-active: rgba(28, 66, 166, 0.63);
+    --color-btn-test-over: rgba(0, 38, 138, 0.63);
 }
 .row {
     margin: auto;
@@ -51,5 +55,18 @@
     border-radius: 15px;
 
     background: #0d6efd;
+    padding: 10px;
     width: 200px;
+    margin: 10px;
 }
+
+.description {
+    padding: 10px;
+    border-radius: 30px;
+    background: var(--color-panel-blue);
+    margin: 10px 0 20px 0;
+}
+
+/* Стили страницы воспроса*/
+
+

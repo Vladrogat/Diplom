@@ -6,7 +6,6 @@
         <div class="bottom_block">
             <span class="card-text time_block float-start">30 - 80 c</span>
             <form action="{{route("sections.show", $section)}}" method="get">
-                @csrf
                <x-inputs.submit text="Открыть" pos="end"/>
             </form>
         </div>
