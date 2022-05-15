@@ -27,7 +27,7 @@ Route::controller(PageController::class)->group(function () {
 
 //Route::controller(QuestionController::class)->group(function () {
     Route::resource('sections/{section}/question', QuestionController::class);
-    Route::post('sections/{section}/question/result', [QuestionController::class, "result"])->name("question.result");
+    Route::post('sections/{section}/question/{question}/result', [QuestionController::class, "result"])->name("question.result");
 //});
 
 Route::controller(SectionController::class)->group(function () {

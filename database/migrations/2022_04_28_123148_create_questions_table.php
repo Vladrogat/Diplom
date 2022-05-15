@@ -22,9 +22,6 @@ return new class extends Migration
             $table->foreignId("idSection")->constrained("sections")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->foreignId("idAnswer")->constrained("answers")
-                ->cascadeOnUpdate()
-                ->restrictOnDelete();
             $table->timestamps();
         });
     }

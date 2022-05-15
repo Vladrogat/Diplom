@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answers;
 use App\Models\Question;
 use App\Models\Section;
 use App\Models\TypeQuestion;
@@ -9,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Session;
+use JetBrains\PhpStorm\NoReturn;
 
 class QuestionController extends Controller
 {
@@ -39,6 +41,8 @@ class QuestionController extends Controller
         $data = [
             "time" => $all_time,
             "questions" => $questions,
+            "ids" => [],
+            "result" => []
         ];
         Session::put("data", $data);
         //dd($data["questions"][0]);
@@ -48,12 +52,33 @@ class QuestionController extends Controller
     public function show(Section $section, Question $question)
     {
         $data = Session::get("data");
+
         return PageController::viewer("pages.questions.index", compact("section", "question", "data"));
     }
 
-    public function result()
+    public function result(Request $request, Section $section, Question $question)
     {
+        $input = $request->input("answer");
+        if ($input != null) {
+            $data = Session::get("data");
+            $data["ids"][] = $request["id"];
+            $data["ids"] = array_unique($data["ids"]);
 
+            $thisQuestion = Question::find($request["id"])->first();
+            $answers = json_decode($thisQuestion->answers->answers, true);
+            $result =  $data["result"];
+            /*
+             * запись ответа в сессию
+             */
+            $res = [ "answer" => $input, "right" => false];
+            if ($answers["right"] == $input) {
+                $res["right"] = true;
+            }
+            $result[$request["id"]] = $res;
+            $data["result"] = $result;
+            Session::put("data", $data);
+        }
+        return redirect()->route("question.show", [$section, $question]);
     }
 
     public function update(Request $request)

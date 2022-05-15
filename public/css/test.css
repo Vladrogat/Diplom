@@ -69,4 +69,10 @@
 
 /* Стили страницы воспроса*/
 
+.active {
 
+}
+.showed {
+    background: var(--color-btn-test-over);
+    color: white;
+}
