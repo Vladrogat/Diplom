@@ -1,10 +1,8 @@
 :root{
+    --index: calc(1vw + 1vh);
     --color-panel-black: rgba(0, 0, 0, 0.3);
     --color-panel-blue: rgba(7, 90, 115, 0.32);
-
     --color-btn-test: rgba(75, 104, 180, 0.29);
-    --color-btn-test-active: rgba(28, 66, 166, 0.63);
-    --color-btn-test-over: rgba(0, 38, 138, 0.63);
 }
 .row {
     margin: auto;
@@ -68,11 +66,45 @@
 }
 
 /* Стили страницы воспроса*/
+from {
+    font-size: calc(var(--index) * 1.1);
+}
+.question {
 
-.active {
+    margin: 10px;
+    padding: 20px;
+    background: var(--color-panel-blue);
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px black, inset -1px -1px 1em rgba(154, 152, 152, 0.37);
+}
+.carousel {
 
 }
-.showed {
-    background: var(--color-btn-test-over);
-    color: white;
+.slider {
+    height: 100%;
+}
+.carousel-indicators {
+    margin-bottom: auto;
+    display: block;
+}
+.carousel-inner {
+    height: auto;
+    width: auto;
+    margin: 0 32px 0 32px;
+}
+.carousel-item {
+
+}
+.question__content {
+    padding: 30px;
+}
+.question__text {
+    font-size: calc(var(--index) * 1);
+    margin: 10px;
+}
+.question__var  {
+
+}
+.carousel-control-next, .carousel-control-prev {
+    width: max-content;
 }

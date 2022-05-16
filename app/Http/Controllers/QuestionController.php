@@ -24,6 +24,7 @@ class QuestionController extends Controller
     {
         $data = Question::where("idSection", "=", $section->getKey())->get();
         $questions = [];
+        $varieble = [];
         $all_time = 0;
         /**
          * Продумать структуру помещения ответов в массив
@@ -32,6 +33,20 @@ class QuestionController extends Controller
             $questions[] = $question;
             $type = TypeQuestion::where("id", "=", $question["idTypeQuestion"])->first();
             $all_time += $type["time"];
+            try {
+                $answers = json_decode($question->answers->answers, true);
+            } catch (\Exception $e) {
+
+            }
+            if (!empty($answers)) {
+                $var = [];
+                if ($answers["answers"]) {
+                    shuffle($answers["answers"]);
+                    $var = array_splice($answers["answers"], 0, 3);
+                }
+                $var[] = $answers["right"];
+                $varieble[$question["id"]] = $var;
+            }
         }
         if (empty($questions)) {
             return redirect()->route("sections.show", $section)->with(["typeError" => "Тестов поданной теме нет"]);
@@ -41,29 +56,27 @@ class QuestionController extends Controller
         $data = [
             "time" => $all_time,
             "questions" => $questions,
-            "ids" => [],
+            "vars" => $varieble,
             "result" => []
         ];
         Session::put("data", $data);
         //dd($data["questions"][0]);
-        return redirect()->route("question.show", [$section, $data["questions"][0]]);
+        return redirect()->route("question.show", $section);
     }
 
-    public function show(Section $section, Question $question)
+    public function show(Section $section)
     {
         $data = Session::get("data");
+        //dd($data);
+        return PageController::viewer("pages.questions.index", compact("section", "data"));
 
-        return PageController::viewer("pages.questions.index", compact("section", "question", "data"));
     }
 
-    public function result(Request $request, Section $section, Question $question)
+    public function result(Request $request, Section $section)
     {
-        $input = $request->input("answer");
+        dd($request);
         if ($input != null) {
             $data = Session::get("data");
-            $data["ids"][] = $request["id"];
-            $data["ids"] = array_unique($data["ids"]);
-
             $thisQuestion = Question::find($request["id"])->first();
             $answers = json_decode($thisQuestion->answers->answers, true);
             $result =  $data["result"];
@@ -78,7 +91,7 @@ class QuestionController extends Controller
             $data["result"] = $result;
             Session::put("data", $data);
         }
-        return redirect()->route("question.show", [$section, $question]);
+        //return redirect()->route("question.show", $section);
     }
 
     public function update(Request $request)

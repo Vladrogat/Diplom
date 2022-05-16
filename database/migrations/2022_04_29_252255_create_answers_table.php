@@ -19,7 +19,6 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->json("answers");
-            $table->timestamps();
         });
     }
 

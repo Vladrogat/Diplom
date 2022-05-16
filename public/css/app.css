@@ -80,7 +80,7 @@ align-items: center;
     font-weight: 500;
     transition: all .4s;
 }
-.active {
+.nav-link.active {
     transition: all 1s;
     background-color: rgba(17, 69, 107, 0.48);
     color: rgb(0, 183, 255);

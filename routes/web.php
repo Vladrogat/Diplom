@@ -26,8 +26,10 @@ Route::controller(PageController::class)->group(function () {
 });
 
 //Route::controller(QuestionController::class)->group(function () {
-    Route::resource('sections/{section}/question', QuestionController::class);
-    Route::post('sections/{section}/question/{question}/result', [QuestionController::class, "result"])->name("question.result");
+    //Route::resource('sections/{section}/question', QuestionController::class);
+    Route::get('sections/{section}/get_questions', [QuestionController::class, "index"])->name("question.index");
+    Route::get('sections/{section}/questions', [QuestionController::class, "show"])->name("question.show");
+    Route::post('sections/{section}/question/result', [QuestionController::class, "result"])->name("question.result");
 //});
 
 Route::controller(SectionController::class)->group(function () {

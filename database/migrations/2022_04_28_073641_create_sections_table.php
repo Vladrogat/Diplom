@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId("idChapter")->constrained("chapters")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->timestamps();
         });
     }
 
