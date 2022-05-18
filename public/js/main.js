@@ -28,7 +28,12 @@ function clickMenu() {
 
 /* работа таймера */
 
+function tick() {
 
+}
+function submit() {
+
+}
 
 
 

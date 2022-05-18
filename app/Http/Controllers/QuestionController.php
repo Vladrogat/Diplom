@@ -10,7 +10,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Session;
-use JetBrains\PhpStorm\NoReturn;
 
 class QuestionController extends Controller
 {
@@ -27,17 +26,18 @@ class QuestionController extends Controller
         $varieble = [];
         $all_time = 0;
         /**
-         * Продумать структуру помещения ответов в массив
+         * Формирование массива хранения данных теста
          */
         foreach ($data as $question) {
+
             $questions[] = $question;
             $type = TypeQuestion::where("id", "=", $question["idTypeQuestion"])->first();
             $all_time += $type["time"];
+
             try {
                 $answers = json_decode($question->answers->answers, true);
-            } catch (\Exception $e) {
+            } catch (\Exception $e) {}
 
-            }
             if (!empty($answers)) {
                 $var = [];
                 if ($answers["answers"]) {
@@ -45,7 +45,7 @@ class QuestionController extends Controller
                     $var = array_splice($answers["answers"], 0, 3);
                 }
                 $var[] = $answers["right"];
-                $varieble[$question["id"]] = $var;
+                $varieble[$question["id"]] = array_unique($var);
             }
         }
         if (empty($questions)) {
@@ -53,6 +53,7 @@ class QuestionController extends Controller
         }
         shuffle($questions);
         $questions = array_splice($questions, 0, 10);
+        //$questions = array_merge($questions, $questions, $questions);
         $data = [
             "time" => $all_time,
             "questions" => $questions,

@@ -1,7 +1,7 @@
 :root{
     --index: calc(1vw + 1vh);
+    --height: 1vh;
     --color-panel-black: rgba(0, 0, 0, 0.3);
-    --color-panel-blue: rgba(7, 90, 115, 0.32);
     --color-btn-test: rgba(75, 104, 180, 0.29);
 }
 .row {
@@ -66,16 +66,11 @@
 }
 
 /* Стили страницы воспроса*/
-from {
-    font-size: calc(var(--index) * 1.1);
+form {
+    font-size: calc(var(--index) * 1);
 }
 .question {
 
-    margin: 10px;
-    padding: 20px;
-    background: var(--color-panel-blue);
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px black, inset -1px -1px 1em rgba(154, 152, 152, 0.37);
 }
 .carousel {
 
@@ -85,26 +80,59 @@ from {
 }
 .carousel-indicators {
     margin-bottom: auto;
-    display: block;
 }
 .carousel-inner {
     height: auto;
     width: auto;
-    margin: 0 32px 0 32px;
+    margin: 10px 40px 0 40px;
 }
 .carousel-item {
-
+}
+.carousel-item.active {
 }
 .question__content {
-    padding: 30px;
+    margin: 20px 20px 30px 20px;
+    background: var(--color-panel-blue);
+    border-radius: 20px;
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.85);
+
+    padding: 10px 10px 40px 10px;
 }
 .question__text {
-    font-size: calc(var(--index) * 1);
-    margin: 10px;
+    padding: 10px 20px 20px 20px;
+    font-size: calc(var(--index) * 1.1);
+    margin: 10px 0 0 0 ;
 }
 .question__var  {
 
 }
 .carousel-control-next, .carousel-control-prev {
-    width: max-content;
+    width: 40px;
+    margin: 0 -5px 0 -5px;
+}
+
+
+@media (max-width: 575px) {
+    form {
+        font-size: calc(var(--index) * 1.4);
+    }
+    .carousel-inner {
+        margin: 0 5px;
+    }
+    .carousel-control-next, .carousel-control-prev {
+        display: none;
+    }
+}
+
+/*Стили элементов формы*/
+.var-group {
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
+.var-item {
+
+}
+.var-item-label {
+    display: flex;
+    justify-content: left;
 }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string("question");
+            $table->string("path_file")->default(null);
             $table->foreignId('idTypeQuestion')->constrained('type_questions')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
