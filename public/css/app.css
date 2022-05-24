@@ -304,3 +304,18 @@ align-items: center;
 .offcanvas-body .form-check {
     padding-left: 0;
 }
+
+/* Блок результата */
+
+.card-result {
+
+}
+
+.block-result {
+    padding: 20px 30px;
+}
+
+.block-result table{
+    border-collapse: separate;
+    border-spacing: 20px 0;
+}

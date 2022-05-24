@@ -11,11 +11,14 @@
                 На данном сайте вы можете пройти тестирование,
                 а так же изучить материал посвященный
                 <a class="theory-link">электромегнетизму</a> и
-                <a class="theory-link">электромагнитной индукции</a>
+                <a class="theory-link">электромагнитной индукции</a>.
+                @if(empty($user))
+                   Для начала изучения создайте профиль или  войдите в учетную запись
+                @endif
             </span>
         </p>
         <p class=" m-5px lead">
-            <a href="#"
+            <a href="{{route("sections.index")}}"
             class="text btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">
                 Начать тестирование
             </a>

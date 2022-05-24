@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(1)->create([
             "is_admin" => true,
+            "name" => "Влад",
             "login" => "admin",
             "email" => "rogatih2017@yandex.ru",
             "password" => "qwerty",
@@ -50,12 +51,27 @@ class DatabaseSeeder extends Seeder
                 "idChapter" => 1
             ],
             [
+                "name" => "Намагничивание ферромагнитных материалов",
+                "description" => "",
+                "idChapter" => 1
+            ],
+            [
+                "name" => "Перемагничивание ферромагнетиков. Магнитный гистерезис",
+                "description" => "",
+                "idChapter" => 1
+            ],
+            [
                 "name" => "Явление электромагнитной индукции",
                 "description" => "",
                 "idChapter" => 2
             ],
             [
                 "name" => "Самоиндукция",
+                "description" => "",
+                "idChapter" => 2
+            ],
+            [
+                "name" => "Взаимоиндукция",
                 "description" => "",
                 "idChapter" => 2
             ]
@@ -118,7 +134,29 @@ class DatabaseSeeder extends Seeder
                         ]
                     ]),
                 "question_id" => 1
-            ]
+            ],
+            [
+                "answers" => json_encode(
+                    [
+                        "right" => "qwerty",
+                    ]),
+                "question_id" => 2
+            ],
+            [
+                "answers" => json_encode(
+                    [
+                        "right" => [
+                            "qwerty",
+                            "катя"
+                        ],
+                        "answers" => [
+                            "мой любимый",
+                            "werty",
+                            "твой"
+                        ]
+                    ]),
+                "question_id" => 5
+            ],
         ]);
     }
 }

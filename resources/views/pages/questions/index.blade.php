@@ -3,12 +3,17 @@
 @section('title', "Тест по " . $section["name"])
 <!--
     данные из бд
-    $data [ time, questions, ids, result] | $section
+    $data [ time, questions, result] | $section
 -->
 @section('content')
     <form id="form-result" onsubmit="" action="{{route("question.result", $section)}}" method="post">
+        <input id="time" type="hidden" name="time">
         <div class="question">
             @csrf
+            <div class="timer">
+                <span class="time"></span>
+                <progress class="timer-progress" value="" max="{{$data["time"]}}"></progress>
+            </div>
             <div id="carouselIndicators" class="carousel slide slider" data-bs-touch="true" data-bs-ride="carousel" data-bs-interval="false">
                 <div class="carousel-indicators">
                     @foreach($data["questions"] as $index => $question)

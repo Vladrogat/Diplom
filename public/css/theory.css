@@ -1,6 +1,8 @@
-
+:root {
+}
 .theory {
     display: flex;
+    height: 100%;
     width: 100%;
 }
 .menu {
@@ -9,8 +11,31 @@
 .text-left {
     text-align: left;
 }
+.accordion-button.collapsed {
+    margin-right: 10px;
+}
 .accordion-item, .accordion-header, .accordion-button, .accordion-collapse {
 //color: white;
     //background: var(--color-panel-blue);
     transition: all .4s ease-in-out;
+}
+.doc {
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+}
+.doc-word {
+    transform-origin: 0 0;
+    border-radius: 10px;
+    width: calc(1vw * 50);
+    height: calc(1vh * 80);
+}
+.accordion-block {
+    font-size: calc(var(--index) * .6);
+}
+@media (max-width: 992px) {
+    .doc-word {
+        width: calc(1vw * 45);
+        height: calc(1vh * 80);
+    }
 }

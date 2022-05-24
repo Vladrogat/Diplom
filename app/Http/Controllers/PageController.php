@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
+use App\Models\Section;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -42,10 +44,23 @@ class PageController extends Controller
      */
     public function  theory(): View|Factory|Application
     {
-        $path = public_path() . "/data/chapters.json";
-        $json = File::get($path);
-        $chapters = json_decode($json, true);
+        $chapters_data = Chapter::all();
+        $chapters = $this->getChapters($chapters_data);
         return self::viewer("pages.theory", compact('chapters'));
     }
 
+    private function getChapters($chapters_data)
+    {
+        $mass = [];
+        foreach ($chapters_data as $chapter) {
+            $mass[$chapter["id"]]["name"] = $chapter["name"];
+
+            $sections = Section::where("idChapter", $chapter["id"])->get();
+            foreach ($sections as $section) {
+                $mass[$chapter["id"]]["sections"][]["name"] = $section["name"];
+
+            }
+        }
+        return $mass;
+    }
 }

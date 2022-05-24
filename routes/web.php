@@ -22,25 +22,12 @@ use \App\Http\Controllers\SectionController;
  */
 Route::controller(PageController::class)->group(function () {
     Route::get('/', "home")->name('home');
-    Route::get('/theory', "theory")->name('theory');
 });
 
-//Route::controller(QuestionController::class)->group(function () {
-    //Route::resource('sections/{section}/question', QuestionController::class);
-    Route::get('sections/{section}/get_questions', [QuestionController::class, "index"])->name("question.index");
-    Route::get('sections/{section}/questions', [QuestionController::class, "show"])->name("question.show");
-    Route::post('sections/{section}/question/result', [QuestionController::class, "result"])->name("question.result");
-//});
-
-Route::controller(SectionController::class)->group(function () {
-    Route::get('/sections', "index")->name('sections.index');
-    Route::get('/sections/{section}', "show")->name('sections.show');
-});
 /*
  * Маршруты пост-запросов аутентификации
  */
 Route::controller(AuthController::class)->group( function () {
-
     Route::post("/login", "login")->name("login");
     Route::post("/registration", "registration")->name("registration");
     Route::get("/logout", "logout")->name("logout");
@@ -50,6 +37,19 @@ Route::controller(AuthController::class)->group( function () {
  * Маршруты закрытые от неавторизованного пользователя
  */
 Route::middleware(["auth"])->group(function () {
+
+    Route::get('/theory', [PageController::class, "theory"])->name('theory');
+
+    Route::controller(QuestionController::class)->group(function () {
+        Route::get('sections/{section}/get_questions',  "index")->name("question.index");
+        Route::get('sections/{section}/questions', "show")->name("question.show");
+        Route::post('sections/{section}/question/result', "result")->name("question.result");
+    });
+
+    Route::controller(SectionController::class)->group(function () {
+        Route::get('/sections', "index")->name('sections.index');
+        Route::get('/sections/{section}', "show")->name('sections.show');
+    });
 
     Route::get('/profile/{user}', [AuthController::class, "profile"])->name('profile');
 

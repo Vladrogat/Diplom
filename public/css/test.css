@@ -5,7 +5,7 @@
     --color-btn-test: rgba(75, 104, 180, 0.29);
 }
 .row {
-    margin: auto;
+    margin:auto;
 }
 
 .title {
@@ -19,11 +19,17 @@
     margin: 5px;
 }
 .card-body {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
+.card-subtitle {
+    margin: 10px 0;
+    font-size: calc(var(--index) * .8);
+}
 .card-title {
-    display: inline-block;
-    text-align: center;
+    font-size: calc(var(--index) * 1);
+    margin-bottom: auto;
 }
 @media (min-width: 767px) {
     .card-title {
@@ -32,17 +38,25 @@
 }
 
 .bottom_block {
-    display: inline-block;
-    width: 100%;
     margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }
+.bottom_block form {
+    flex: 1;
+}
+
+.time_block, .btn-text {
+    font-size: calc(var(--index) * .8);
+}
+
 .time_block {
-    position: relative;
-    top: 50%;
-    transform: translate(0, 50%);
+    transform: translate(0, 25%);
 }
+
 .btn-start {
-    font-size: 15pt;
+    font-size: calc(var(--index) * .7);
     padding: 5px 20px;
     border-radius: 10px;
 }
@@ -51,7 +65,6 @@
     color: white;
     font-size: 17pt;
     border-radius: 15px;
-
     background: #0d6efd;
     padding: 10px;
     width: 200px;
@@ -82,7 +95,7 @@ form {
     margin-bottom: auto;
 }
 .carousel-inner {
-    height: auto;
+    height: max-content;
     width: auto;
     margin: 10px 40px 0 40px;
 }
@@ -96,7 +109,7 @@ form {
     border-radius: 20px;
     box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.85);
 
-    padding: 10px 10px 40px 10px;
+    padding: 20px 20px 40px 20px;
 }
 .question__text {
     padding: 10px 20px 20px 20px;
@@ -112,18 +125,6 @@ form {
 }
 
 
-@media (max-width: 575px) {
-    form {
-        font-size: calc(var(--index) * 1.4);
-    }
-    .carousel-inner {
-        margin: 0 5px;
-    }
-    .carousel-control-next, .carousel-control-prev {
-        display: none;
-    }
-}
-
 /*Стили элементов формы*/
 .var-group {
     padding-bottom: 10px;
@@ -133,6 +134,72 @@ form {
 
 }
 .var-item-label {
+    font-size: calc(var(--index) * .9);
     display: flex;
     justify-content: left;
+}
+
+.question__var .input-text {
+    width: 50%;
+    font-size: calc(var(--index) * 1);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+
+.timer {
+    margin-right: 60px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.timer .time {
+    font-size: calc(var(--index) * .9);
+    margin-right: 10px;
+}
+progress.timer-progress {
+    width: 300px;
+    height: 30px
+}
+
+@media (max-width: 575px) {
+    form {
+        font-size: calc(var(--index) * 1.4);
+    }
+    .carousel-inner {
+        margin: 0;
+    }
+    .carousel-control-next, .carousel-control-prev {
+        display: none;
+    }
+    .timer {
+        margin-right: 30px;
+    }
+    progress.timer-progress {
+        width: 100px;
+        height: 30px
+    }
+}
+@media (max-width: 767px) {
+    .question__var .input-text {
+        width: 100%;
+    }
+    progress.timer-progress {
+        width: 300px;
+        height: 20px;
+    }
+}
+@media (max-width: 475px) {
+    .time {
+        text-align: center;
+    }
+    .timer {
+        margin-left: 30px;
+        display: block;
+    }
+    progress.timer-progress {
+        width: 100%;
+        height: 20px;
+    }
 }

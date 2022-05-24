@@ -14,16 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('results', function (Blueprint $table) {
-            $table->id();
             $table->foreignId("user_id")->constrained("users")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->foreignId("section_id")->constrained("sections")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->string("result");
-            $table->json("data");
+            $table->integer("time");
+            $table->integer("grade");
+            $table->string("points");
+            $table->json("result");
             $table->timestamps();
+            $table->primary(["user_id", "section_id"]);
         });
     }
 
