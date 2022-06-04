@@ -48,6 +48,9 @@ class AuthController extends Controller
             return redirect(route("profile", Auth::user()));
         }
         Session::put("typeError", "registration");
+        /*
+         * Валидация полей
+         */
         $fields = $request->validate([
             "email" => "bail|required|email",
             "name" => "bail|required|max:100",

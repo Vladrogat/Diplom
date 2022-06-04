@@ -10,15 +10,17 @@
 <body class="d-flex h-100 text-center text-white back">
     <div class="container-fluid wraper">
         <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <x-panels.header :user="$user" :errors="$errors" :typeError="$typeError"/>
+            <x-panels.header :user="$user" :errors="$errors" :typeError="$typeError"></x-panels.header>
             <main>
                 @yield('content')
             </main>
-            <x-panels.footer/>
+            <x-panels.footer></x-panels.footer>
         </div>
     </div>
 
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('js/theory.js')}}"></script>
+    <script src="{{asset('js/test.js')}}"></script>
 </body>
 </html>

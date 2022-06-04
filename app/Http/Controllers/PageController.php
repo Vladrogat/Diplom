@@ -55,10 +55,17 @@ class PageController extends Controller
         foreach ($chapters_data as $chapter) {
             $mass[$chapter["id"]]["name"] = $chapter["name"];
 
+            $mass[$chapter["id"]]["sentences"] = [
+                "name" =>  'Упражнения по "' . $chapter["name"] . '"',
+                "document" => $chapter["sentence_doc"]
+            ];
+
             $sections = Section::where("idChapter", $chapter["id"])->get();
             foreach ($sections as $section) {
-                $mass[$chapter["id"]]["sections"][]["name"] = $section["name"];
-
+                $mass[$chapter["id"]]["sections"][] = [
+                    "name" => $section["name"],
+                    "document" => $section["document"]
+                ];
             }
         }
         return $mass;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answers;
+use App\Models\Chapter;
 use App\Models\Question;
 use App\Models\Result;
 use App\Models\Section;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Session;
 
 class QuestionController extends Controller
 {
+
     /**
      * Получение вопросов по данному разделу
      *
@@ -27,38 +29,37 @@ class QuestionController extends Controller
         $questions = [];
         $varieble = [];
         $all_time = 0;
-
         /**
          * Формирование массива хранения данных теста
          */
-
         foreach ($data_questions as $question) {
             $questions[$question["id"]] = $question;
-
+            /*
+             * Получение типа вопроса и времени
+             */
             $type = TypeQuestion::where("id", "=", $question["idTypeQuestion"])->first();
             $all_time += $type["time"];
             $answers = null;
-
+            /*
+             * Получение вариантов вопроса
+             */
             try {
                 $answers = json_decode($question->answers->answers, true);
             } catch (\Exception $e) {}
-
             if (!empty($answers)) {
-
+                /*
+                 * Формирование массива вариантов вопроса
+                 */
                 $var = [];
                 if ( is_array($answers["right"])) {
                     $var = array_merge($var, $answers["right"]);
                 } else {
                     $var[] = $answers["right"];
                 }
-
                 if (!empty($answers["answers"])) {
-
                     shuffle($answers["answers"]);
                     $var = array_merge($var, array_splice($answers["answers"], 0, 4 - count($var)));
-
                 }
-
                 try {
                     shuffle($var);
                     $varieble[$question["id"]] = array_unique($var);
@@ -73,12 +74,10 @@ class QuestionController extends Controller
         }
         shuffle($questions);
         $questions = array_splice($questions, 0, 10);
-        //$questions = array_merge($questions, $questions, $questions);
         $data = [
             "time" => $all_time,
             "questions" => $questions,
             "vars" => $varieble,
-
         ];
         Session::put("data", $data);
 
@@ -87,15 +86,11 @@ class QuestionController extends Controller
 
     public function show(Section $section)
     {
-        //if (Session::get("count_try") <= 1) {
-            $data = Session::get("data");
-            //$data["time"] = 10;
-            //dd($data);
-            return PageController::viewer("pages.questions.index", compact("section", "data"));
-        /* } else {
-            dd(Session::get("count_try"));
-            Session::remove("count_try");
-        }*/
+        /*
+         * Получение данных
+         * */
+        $data = Session::get("data");
+        return PageController::viewer("pages.questions.index", compact("section", "data"));
     }
 
     public function result(Request $request, Section $section)
@@ -112,10 +107,8 @@ class QuestionController extends Controller
                     } catch (\Exception $e) {}
                     // множетвенный ответ
                     if (is_array($answers[$question["id"]])) {
-
-                        // получаю ценость кажого варианта
+                        // получение цености кажого варианта
                         $score = 1 / count($right);
-
                         foreach ($answers[$question["id"]] as $answer) {
                             if (in_array($answer, $right)) {
                                 unset($right[array_search($answer,$right)]);
@@ -128,6 +121,7 @@ class QuestionController extends Controller
                             $points = 0;
                         }
                     } else {
+
                         if ($answers[$question["id"]] == $right) {
                             $points++;
                         }
@@ -135,10 +129,11 @@ class QuestionController extends Controller
                 }
             }
         }
-
+        /*
+         * Оценивание
+         */
         $percent = $points * 100 / count($data["questions"]);
         $grade = 2;
-
         if ($percent >= 50 && $percent < 60) {
             $grade = 3;
         } elseif ($percent >= 70 && $percent < 80 ) {
@@ -146,6 +141,9 @@ class QuestionController extends Controller
         } elseif ($percent >= 90 && $percent < 100 ) {
             $grade = 5;
         }
+        /*
+         * Запись результата в бд
+         */
         $result = Result::where("user_id", "=", Auth::id())->where("section_id", "=", $section["id"]);
         if ($result->first()) {
             $result->update([
@@ -171,30 +169,5 @@ class QuestionController extends Controller
             ]);
         }
         return redirect(route("profile", Auth::user()));
-    }
-
-    public function update(Request $request)
-    {
-
-    }
-
-    public function create()
-    {
-
-    }
-
-    public function store(Request $request)
-    {
-
-    }
-
-    public function edit()
-    {
-
-    }
-
-    public function delete()
-    {
-
     }
 }

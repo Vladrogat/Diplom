@@ -1,9 +1,11 @@
 :root{
-    --color-panel-black: rgba(0, 0, 0, 0.3);
-    --color-panel-blue: rgba(5, 67, 91, 0.65);
+    --index: calc(1vw + 1vh);
+    --height: 1vh;
 
+    --color-panel-blue: rgba(5, 67, 91, 0.62);
     --color-back-blue: rgba(4, 25, 38, 0.72);
-    --color-back-black: rgba(0, 0, 0, 0.8);
+    --color-panel-black: rgba(0, 0, 0, 0.3);
+    --color-btn-test: rgba(75, 104, 180, 0.29);
 }
 body, html {
     width: 100%;
@@ -312,6 +314,8 @@ align-items: center;
 }
 
 .block-result {
+    display: flex;
+    flex-direction: column;
     padding: 20px 30px;
 }
 

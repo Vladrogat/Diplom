@@ -28,53 +28,75 @@ class DatabaseSeeder extends Seeder
 
         DB::table("chapters")->insert([
             [
-                "name" => "Электромагнетизм"
+                "name" => "Электромагнетизм",
+                "sentence_doc" => "19Nk8aRn3T7YUgFTt3OZaEU_A0_rmqDmC",
             ],
             [
-                "name" => "Электромагнитная индукция"
+                "name" => "Электромагнитная индукция",
+                "sentence_doc" => "19Nk8aRn3T7YUgFTt3OZaEU_A0_rmqDmC",
             ]
         ]);
         DB::table("sections")->insert([
             [
                 "name" => "Магнитное поле тока",
-                "description" => "",
+                "document" => "1sgn2eX1rlFGOX3V92PJhV2SFdGnMn33s",
+                "description" => 'Тест по теме "Магнитное поле тока" и правила правой руки',
                 "idChapter" => 1
             ],
             [
                 "name" => "Свойства магнитного поля",
+                "document" => "1g3u2HzBpKxc99gSD7jL-ZQkpCmV7F02z",
                 "description" => "",
                 "idChapter" => 1
             ],
             [
                 "name" => "Основные характеристики магнитного поля",
-                "description" => "",
+                "document" => "1WtvyHv35Z02Fa54JIV4rku948R0wSNuS",
+                "description" => "Что такое напряженность, магнитная индукция, магнитный поток и потокосцепление",
                 "idChapter" => 1
             ],
             [
                 "name" => "Намагничивание ферромагнитных материалов",
+                "document" => "1w__znx6b-BeGrQr9xmxS0c1gDdjy4sxc",
                 "description" => "",
                 "idChapter" => 1
             ],
             [
                 "name" => "Перемагничивание ферромагнетиков. Магнитный гистерезис",
+                "document" => "19Nk8aRn3T7YUgFTt3OZaEU_A0_rmqDmC",
                 "description" => "",
                 "idChapter" => 1
             ],
+//            [
+//                "name" => "Упражнения по Электромагнетизму",
+//                "document" => "19Nk8aRn3T7YUgFTt3OZaEU_A0_rmqDmC",
+//                "description" => "",
+//                "idChapter" => 1
+//            ],
             [
                 "name" => "Явление электромагнитной индукции",
+                "document" => "1kV6Uur5j8bvftdpl0-UouUQQsD17u_o4",
                 "description" => "",
                 "idChapter" => 2
             ],
             [
                 "name" => "Самоиндукция",
+                "document" => "1OwiVO3y771aGSwcErbf2nyuBPGk_Z_P1",
                 "description" => "",
                 "idChapter" => 2
             ],
             [
                 "name" => "Взаимоиндукция",
+                "document" => "1e56Sh2hldnS8cGZ1SGn4Oj69_kfAL_c-",
                 "description" => "",
                 "idChapter" => 2
-            ]
+            ],
+//            [
+//                "name" => "Упражнения по Электромагнитной индукции",
+//                "document" => "19Nk8aRn3T7YUgFTt3OZaEU_A0_rmqDmC",
+//                "description" => "",
+//                "idChapter" => 2
+//            ],
         ]);
 
         DB::table("type_questions")->insert([
@@ -99,6 +121,11 @@ class DatabaseSeeder extends Seeder
             [
                 "question" => "Что будет после?",
                 "idTypeQuestion" => 1,
+                "idSection" => 1
+            ],
+            [
+                "question" => "И что убдет?",
+                "idTypeQuestion" => 4,
                 "idSection" => 1
             ],
             [
@@ -156,6 +183,22 @@ class DatabaseSeeder extends Seeder
                         ]
                     ]),
                 "question_id" => 5
+            ],
+            [
+                "answers" => json_encode(
+                    [
+                        "right" => [
+                            "qwerty",
+                            "катя"
+                        ],
+                        "answers" => [
+                            "мой любимый",
+                            "werty",
+                            "твой",
+                            "машнит"
+                        ]
+                    ]),
+                "question_id" => 6
             ],
         ]);
     }

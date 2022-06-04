@@ -1,21 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\ChapterController;
 use \App\Http\Controllers\PageController;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\QuestionController;
 use \App\Http\Controllers\SectionController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 
 /*
  * Маршруты гет-запросов перехода между страницами
@@ -44,6 +34,10 @@ Route::middleware(["auth"])->group(function () {
         Route::get('sections/{section}/get_questions',  "index")->name("question.index");
         Route::get('sections/{section}/questions', "show")->name("question.show");
         Route::post('sections/{section}/question/result', "result")->name("question.result");
+    });
+
+    Route::controller(ChapterController::class)->group(function () {
+        Route::get('/chapters/{chapter}', "show")->name('chapters.show');
     });
 
     Route::controller(SectionController::class)->group(function () {

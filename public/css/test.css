@@ -1,10 +1,7 @@
-:root{
-    --index: calc(1vw + 1vh);
-    --height: 1vh;
-    --color-panel-black: rgba(0, 0, 0, 0.3);
-    --color-btn-test: rgba(75, 104, 180, 0.29);
-}
+
 .row {
+    display: flex;
+    flex-direction: row;
     margin:auto;
 }
 
@@ -12,6 +9,7 @@
     margin-bottom: 20px;
 }
 .card-test {
+    opacity: .75;
     position: relative;
     box-sizing: border-box;
     background: var(--color-panel-blue);
@@ -19,8 +17,7 @@
     margin: 5px;
 }
 .card-body {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
     height: 100%;
 }
 .card-subtitle {
@@ -28,33 +25,31 @@
     font-size: calc(var(--index) * .8);
 }
 .card-title {
-    font-size: calc(var(--index) * 1);
-    margin-bottom: auto;
+    text-align: center;
+    font-size: calc(var(--index) * .9);
+}
+
+.btn-block {
+    opacity: 0;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+}
+.card-test{
+    transition: .3s opacity, .3s transform;
+}
+.card-final {
+    height: 20%;
+}
+.card-test:hover{
+    transform: scale(.98);
+    opacity: 1;
 }
 @media (min-width: 767px) {
-    .card-title {
-        width: max-content;
-    }
-}
 
-.bottom_block {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-items: center;
 }
-.bottom_block form {
-    flex: 1;
-}
-
-.time_block, .btn-text {
-    font-size: calc(var(--index) * .8);
-}
-
-.time_block {
-    transform: translate(0, 25%);
-}
-
 .btn-start {
     font-size: calc(var(--index) * .7);
     padding: 5px 20px;
@@ -82,12 +77,8 @@
 form {
     font-size: calc(var(--index) * 1);
 }
-.question {
-
-}
-.carousel {
-
-}
+.question {}
+.carousel {}
 .slider {
     height: 100%;
 }
@@ -99,10 +90,8 @@ form {
     width: auto;
     margin: 10px 40px 0 40px;
 }
-.carousel-item {
-}
-.carousel-item.active {
-}
+.carousel-item {}
+.carousel-item.active {}
 .question__content {
     margin: 20px 20px 30px 20px;
     background: var(--color-panel-blue);
@@ -164,6 +153,7 @@ progress.timer-progress {
 }
 
 @media (max-width: 575px) {
+
     form {
         font-size: calc(var(--index) * 1.4);
     }
@@ -182,6 +172,9 @@ progress.timer-progress {
     }
 }
 @media (max-width: 767px) {
+    .card-test {
+        width: 100%;
+    }
     .question__var .input-text {
         width: 100%;
     }

@@ -24,7 +24,7 @@
                 </div>
                 <div class="carousel-inner ">
                     @foreach($data["questions"] as $index => $question)
-                        <div class="carousel-item {{$index == 0? "active":""}}">
+                        <div class="carousel-item {{$index == 0 ? "active" : ""}}">
                             <div class="question__content">
                                 <div class="question__text">
                                     {{$question["question"]}}
