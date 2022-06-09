@@ -7,7 +7,6 @@ const animElems = document.querySelectorAll(".lines");
  */
 document.onclick = function(e){
     if ( e.target.className !== 'dropdown-menu' && !e.target.classList.contains("cl")) {
-        console.log( e.target.className);
         if (animElems.length > 0) {
             for (let i = 0; i < animElems.length; i++) {
                 const animItem = animElems[i];
@@ -18,12 +17,9 @@ document.onclick = function(e){
 };
 function clickMenu() {
     if (animElems.length > 0) {
-        console.log(2);
         for (let i = 0; i < animElems.length; i++) {
             const animItem = animElems[i];
             animItem.classList.toggle("active");
         }
     }
 }
-
-

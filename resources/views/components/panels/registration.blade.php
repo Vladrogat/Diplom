@@ -10,6 +10,9 @@
     <x-inputs.group for="email" title="Email" helpText="">
         <x-inputs.email id="email" name="email" old="" place=""/>
     </x-inputs.group>
+    <x-inputs.group for="name" title="Имя" helpText="">
+        <x-inputs.text id="name" name="name" old="" place=""/>
+    </x-inputs.group>
     <x-inputs.group for="login" title="Логин" helpText="">
         <x-inputs.text id="login" name="login" old="" place=""/>
     </x-inputs.group>
@@ -20,5 +23,5 @@
         <x-inputs.password id="confirm" old="" name="confirm" place=""/>
     </x-inputs.group>
 
-    <x-inputs.submit text="Регистрация"/>
+    <x-inputs.submit text="Регистрация" pos="start"/>
 </form>
