@@ -13,10 +13,26 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Node\Expr\Array_;
 
 class QuestionController extends Controller
 {
-
+    /**
+     * Перемешивает ассоциативный массив
+     *
+     * @param array $array - ассоциативный массив
+     * @return int[]|string[]
+     */
+    function shuffle_assoc(array $array)
+    {
+        $keys = array_keys($array);
+        shuffle($keys);
+        $keys = array_flip($keys);
+        foreach ($array as $key => $value) {
+            $keys[$key] = $value;
+        }
+        return $keys;
+    }
     /**
      * Получение вопросов по данному разделу
      *
@@ -61,13 +77,11 @@ class QuestionController extends Controller
                     $var = array_merge($var, array_splice($answers["answers"], 0, 4 - count($var)));
                 }
                 try {
-                    shuffle($var);
-                    $varieble[$question["id"]] = array_unique($var);
+                    $varieble[$question["id"]] = $this->shuffle_assoc(array_unique($var));
                 } catch (\Exception $x) {
                     dd($var);
                 }
             }
-
         }
         if (empty($questions)) {
             return redirect()->route("sections.show", $section)->with(["typeError" => "Тестов поданной теме нет"]);
@@ -88,7 +102,7 @@ class QuestionController extends Controller
     {
         /*
          * Получение данных
-         * */
+         */
         $data = Session::get("data");
         return PageController::viewer("pages.questions.index", compact("section", "data"));
     }

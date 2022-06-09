@@ -3,7 +3,7 @@
         <h3 class="float-md-start mb-0">
             <div class="header_logo">
                 <a href="{{route('home')}}">
-                    <img width="50" height="50" src="{{asset('logo.png')}}">
+                    <img width="50" height="50" src="{{asset('logo/logo.png')}}">
                     <span class="title_logo">Электронное пособие</span>
                 </a>
             </div>

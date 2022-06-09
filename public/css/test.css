@@ -196,3 +196,13 @@ progress.timer-progress {
         height: 20px;
     }
 }
+
+.img {
+    image-rendering: crisp-edges;
+    width: 100px;
+    height: 100%;
+}
+.label-img {
+
+}
+
