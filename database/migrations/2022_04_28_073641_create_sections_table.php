@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string("name")->unique();
+            $table->string("document");
+            $table->string("description");
             $table->foreignId("idChapter")->constrained("chapters")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->timestamps();
         });
     }
 

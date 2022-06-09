@@ -1,9 +1,11 @@
 :root{
-    --color-panel-black: rgba(0, 0, 0, 0.3);
-    --color-panel-blue: rgba(7, 90, 115, 0.41);
+    --index: calc(1vw + 1vh);
+    --height: 1vh;
 
+    --color-panel-blue: rgba(5, 67, 91, 0.62);
     --color-back-blue: rgba(4, 25, 38, 0.72);
-    --color-back-black: rgba(0, 0, 0, 0.8);
+    --color-panel-black: rgba(0, 0, 0, 0.3);
+    --color-btn-test: rgba(75, 104, 180, 0.29);
 }
 body, html {
     width: 100%;
@@ -80,7 +82,7 @@ align-items: center;
     font-weight: 500;
     transition: all .4s;
 }
-.active {
+.nav-link.active {
     transition: all 1s;
     background-color: rgba(17, 69, 107, 0.48);
     color: rgb(0, 183, 255);
@@ -121,8 +123,8 @@ align-items: center;
 }
 
 .text {
+    font-size: calc(var(--index) * 1.1);
     margin: 5px 10px;
-    font-size: 20pt;
     font-min-size: larger;
 }
 
@@ -163,7 +165,7 @@ align-items: center;
 @media (max-width: 575px) {
     .text {
         margin: 5px 10px;
-        font-size: 5vw;
+        font-size: 4vw;
         font-min-size: larger;
     }
 }
@@ -193,7 +195,7 @@ align-items: center;
     display: none;
 }
 .dropdown-menu {
-    background-color: rgba(35, 84, 140, 0.83);
+    background-color: rgba(7, 70, 115, 0.6);
 }
 .nav.menu {
     margin-left: 10px;
@@ -261,7 +263,7 @@ align-items: center;
 .lable {
     font-size:large;
 }
-.form-control{
+.form-auth-control{
     color: white;
     font-size: 17pt;
 
@@ -271,7 +273,7 @@ align-items: center;
     border-bottom: 3px solid white;
     border-radius: 0;
 }
-.form-control:active, .form-control:hover, .form-control:focus {
+.form-auth-control:active,.form-auth-control:hover,.form-auth-control:focus {
     color: white;
     font-size: 17pt;
     outline: none;
@@ -299,4 +301,25 @@ align-items: center;
     border-radius: 5px;
     padding: 20px 10px;
     width: 100%;
+}
+
+.offcanvas-body .form-check {
+    padding-left: 0;
+}
+
+/* Блок результата */
+
+.card-result {
+
+}
+
+.block-result {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+}
+
+.block-result table{
+    border-collapse: separate;
+    border-spacing: 20px 0;
 }

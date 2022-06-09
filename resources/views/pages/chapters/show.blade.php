@@ -1,10 +1,10 @@
 @extends('layouts.home')
 
-@section('title', $section["name"])
+@section('title', $chapter["name"])
 
 @section('content')
 
-    <h1>{{$section["name"]}}</h1>
+    <h1>{{$chapter["name"]}}</h1>
     <div class="description">
         <p class="text">
             <span>
@@ -22,7 +22,7 @@
         </p>
 
     </div>
-    <form action="{{route("question.index", $section)}}" method="get">
+    <form action="{{route("question.index", $chapter)}}" method="get">
         <button type="submit" class="btn btn-start btn-primary start-test">
             Начать
         </button>

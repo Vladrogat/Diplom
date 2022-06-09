@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
-            $table->id();
-            $table->string("question");
-            $table->string("img");
-            $table->foreignId('idTypeQuestion')->constrained('type_questions')
+        Schema::create('results', function (Blueprint $table) {
+            $table->foreignId("user_id")->constrained("users")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->foreignId("idSection")->constrained("sections")
+            $table->foreignId("section_id")->constrained("sections")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
+            $table->integer("time");
+            $table->integer("grade");
+            $table->string("points");
+            $table->json("result");
+            $table->timestamps();
+            $table->primary(["user_id", "section_id"]);
         });
     }
 
@@ -33,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('results');
     }
 };

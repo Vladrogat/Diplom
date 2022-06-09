@@ -1,2 +1,2 @@
 <input id="{{$id}}" type="password" name="{{$name}}"
-       class="form-control" placeholder="text" value="{{$old}}">
+       class="form-control form-auth-control" placeholder="text" value="{{$old}}">
