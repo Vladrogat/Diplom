@@ -20,7 +20,7 @@
                 <div id="flush-collapse-{{$id}}" class="accordion-collapse text-left collapse" aria-labelledby="flush-heading-{{$id}}" data-bs-parent="#accordionFlush">
                     <div id="{{$data["sentences"]["document"]}}" class="accordion-body text-black d-block text-truncate"
                          data-bs-toggle="tooltip" data-bs-placement="top" title="{{$data["sentences"]["name"]}}"
-                         style="max-width: 320px;" onclick="clickAcordeon(this)">
+                         style="max-width: 320px;" onclick="clickSentens(this)">
                         <span>{{$data["sentences"]["name"]}}</span>
                     </div>
                 </div>

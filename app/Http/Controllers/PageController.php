@@ -49,6 +49,11 @@ class PageController extends Controller
         return self::viewer("pages.theory", compact('chapters'));
     }
 
+    /**
+     * Метод возращающий ассоциативный массив с днными о разделе 
+     * @param array $chapters_data
+     * @return Array
+     */
     private function getChapters($chapters_data)
     {
         $mass = [];

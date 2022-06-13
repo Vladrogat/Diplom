@@ -1,3 +1,4 @@
+<label for="question{{ $index }}" class="form-label var-item-label">{{ $question['desc'] }}</label>
 @foreach($data["vars"][$question["id"]] as $key => $var)
     <div class="form-check var-group">
         <input value="{{$var}}" class="form-check-input var-item" type="checkbox" name="answers[{{$question["id"]}}][]" id="question{{$index}}_{{$key}}">

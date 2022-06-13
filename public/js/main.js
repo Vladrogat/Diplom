@@ -1,4 +1,3 @@
-
 const animElems = document.querySelectorAll(".lines");
 
 /*

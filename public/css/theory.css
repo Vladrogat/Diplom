@@ -1,65 +1,82 @@
 .theory {
-    display: flex;
-    height: 100%;
-    width: 100%;
-}
-.menu {
-    width: max-content;
-}
-.text-left {
-    text-align: left;
-}
-.accordion-button.collapsed {
-    margin-right: 10px;
-}
-.accordion-item, .accordion-header, .accordion-button, .accordion-collapse {
-    font-size: calc(var(--index) * .8);
-    background: var(--color-panel-blue);
-    color: white;
+	display: flex;
+	height: 100%;
+	width: 100%;
 }
 
-.accordion-item, .accordion-header, .accordion-button, .accordion-collapse{
-    transition: .5s all ease-in-out;
+.menu {
+	width: max-content;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.accordion-button.collapsed {
+	margin-right: 10px;
+}
+
+.accordion-item,
+.accordion-header,
+.accordion-button,
+.accordion-collapse {
+	font-size: calc(var(--index) * .8);
+	background: var(--color-panel-blue);
+	color: white;
+}
+
+.accordion-item,
+.accordion-header,
+.accordion-button,
+.accordion-collapse {
+	transition: .5s all ease-in-out;
 }
 
 .doc {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 10px;
+	padding: 15px 0 0 0;
+	background-color: rgb(211, 210, 210);
+	border-radius: 10px;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 10px;
 }
+
 .doc-word {
-    transform-origin: 0 0;
-    border-radius: 10px;
-    width: calc(1vw * 50);
-    height: calc(1vh * 80);
+	background-color: white;
+	transform-origin: 0 0;
+	border-radius: 10px;
+	width: calc(1vw * 50);
+	height: calc(1vh * 80);
 }
+
 .accordion-block {
-    font-size: calc(var(--index) * .9);
+	font-size: calc(var(--index) * .9);
 }
+
 .accordion-body span {
-    color: white;
-    transition: all .2s ease-in-out;
+	color: white;
+	transition: all .2s ease-in-out;
 }
 
 .accordion-body.active {
-    background-color: #e7f1ff;
-    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+	background-color: #e7f1ff;
+	box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
 }
+
 .accordion-body.active span {
-    color: #0c63e4;
+	color: #0c63e4;
 }
+
 @media (min-width: 1200px) {
-    .accordion-block {
-        font-size: calc(var(--index) * .8);
-    }
+	.accordion-block {
+		font-size: calc(var(--index) * .8);
+	}
 }
+
 @media (max-width: 992px) {
-    .doc-word {
-        width: calc(1vw * 45);
-        height: calc(1vh * 80);
-    }
+	.doc-word {
+		width: calc(1vw * 45);
+		height: calc(1vh * 80);
+	}
 }
-
-
-
