@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\PageController;
 use App\Http\Requests\UserRequest;
 use App\Models\Result;
+use App\Models\Chapter;
 use App\Models\Section;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -94,6 +95,8 @@ class AuthController extends Controller
         foreach ($results_data as $result) {
             $options = json_decode($result["result"], true);
             $results[] = [
+				"isFinal" => $result["isFinal"],
+				"chapter" => Chapter::where("id", $result["chapter_id"])->first()["name"],
                 "section" => Section::where("id", $result["section_id"])->first()["name"],
                 "time" => $result["time"],
                 "grade" => $result["grade"],

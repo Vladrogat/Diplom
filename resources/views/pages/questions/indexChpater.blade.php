@@ -1,13 +1,12 @@
 @extends('layouts.home')
 
-@section('title', 'Тест по ' . $section['name'])
+@section('title', 'Тест по ' . $chapter['name'])
 <!--
     данные из бд
-    $data [ time, questions, result] | $section
+    $data [ time, questions, result] | $chapter
 -->
 @section('content')
-
-    <form id="form-result" onsubmit="" action="{{ route('question.result', $section) }}" method="post">
+    <form id="form-result" onsubmit="" action="{{ route('question.resultChapter', $chapter) }}" method="post">
         <input id="time" type="hidden" name="time" value="0">
         <div class="question">
             @csrf
@@ -31,6 +30,7 @@
                             <div class="question__content">
                                 <div class="question__text">
                                     {{ $question['question'] }}
+
                                     @if (!empty($question['img']))
                                         <div class="img question-img">
                                             <img class="img question-img" src=" {{ asset('phots/' . $question['img']) }}"
@@ -39,7 +39,6 @@
                                     @endif
                                 </div>
                                 <div class="question__var">
-
                                     @switch($question["idTypeQuestion"])
                                         @case(1)
                                             <x-templates_question.oneOption :data="$data" :question="$question" :index='$index + 1'>
@@ -60,6 +59,8 @@
                                             <x-templates_question.matchDefinitions :data="$data" :question="$question"
                                                 :index='$index + 1'></x-templates_question.matchDefinitions>
                                         @break
+
+                                        @default
                                     @endswitch
                                 </div>
                             </div>

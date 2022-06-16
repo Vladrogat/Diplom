@@ -79,12 +79,12 @@ class AnswerSeeder extends Seeder
 		[
 			"answers" => json_encode([
 					"right" => [
-						"file" => "pole1.png",
-						"file" => "magnit2.png"
+						"file1" => "pole1.png",
+						"file2" => "magnit2.png"
 					],
 					"answers" => [
-						"file" => "pole2.png",
-						"file" => "magnit1.phg"
+						"file3" => "pole2.png",
+						"file4" => "magnit1.png"
 					]
 				]),
 			"question_id" => 8
@@ -92,12 +92,12 @@ class AnswerSeeder extends Seeder
 		[
 			"answers" => json_encode([
 					"right" => [
-						"file" => "circleToRight.png",
-						"file" => "circleToRUp.png"
+						"file1" => "circleToRight.gif",
+						"file2" => "circleToRUp.gif"
 					],
 					"answers" => [
-						"file" => "circleFrom.png",
-						"file" => "circleToleft.png"
+						"file3" => "circleFrom.gif",
+						"file4" => "circleToleft.gif"
 					]
 				]),
 			"question_id" => 9
@@ -105,12 +105,12 @@ class AnswerSeeder extends Seeder
 		[
 			"answers" => json_encode([
 				"right" => [
-					"file" => "rectangleRight.png"
+					"file4" => "rectangleRight.png"
 				],
 				"answers" => [
-					"file" => "rectangle1.png",
-					"file" => "rectangle2.png",
-					"file" => "rectangle3.png"
+					"file1" => "rectangle1.png",
+					"file2" => "rectangle2.png",
+					"file3" => "rectangle3.png"
 				]
 			]),
 			"question_id" => 10
@@ -121,7 +121,7 @@ class AnswerSeeder extends Seeder
 				"answers" => [
 					"против часовой стрелки",
 					"магнитное поле не создается",
-					"затрудняюсь ответить"
+					"магнитное поле не создается"
 				]
 			]),
 			"question_id" => 11
@@ -139,11 +139,11 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => "магнитное поле не создается",
+				"right" => "магнитное поле не создается, так как ",
 				"answers" => [
 					"по часовой стрелке",
 					"против часовой стрелки", 
-					"затрудняюсь ответить"
+					"магнитное поле не создается"
 				]
 			]),
 			"question_id" => 13
@@ -336,7 +336,99 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => "",
+				"head" => [
+					[
+						"colspan" => 1,
+						"text"=> "физические величины"
+					],
+					[
+						"colspan" => 2,
+						"text"=> "формулы"
+					],				
+					[
+						"colspan" => 2,
+						"text"=> "единицы измерений физических величин"
+					],
+				],
+				"rows" => [
+					[
+						"напряженность",
+						1,
+						"Fm/l",
+						"А",
+						"Вб"
+					],
+					[
+						"потокосцепление катушки",
+						2,
+						"B·S",
+						"Б",
+						"Гн/м"
+					],
+					[
+						"индукция",
+						3,
+						"μо·μ",
+						"В",
+						"А/м"
+					],
+					[
+						"магнитный поток",
+						4,
+						"μа·H",
+						"",
+						""
+					],
+					[
+						"абсолютная магнитная проницаемость среды",
+						5,
+						"ω·Ф",
+						"",
+						""
+					]
+				],
+				"right" => [
+					"1423",
+					"ВААБ"
+				],
+				"answers" => [
+					"head" => [
+						[
+							"colspan" => 1,
+							"text"=> "напряженность"
+						],
+						[
+							"colspan" => 1,
+							"text" => "индукция"
+						],
+						[
+							"colspan" => 1,
+							"text"=> "потокосцепление катушки"
+						],
+						[
+							"colspan" => 1,
+							"text" => "абсолютная магнитная проницаемость среды"
+						],
+						[
+							"colspan" => 1,
+							"text" => "потокосцепление катушки"
+						]
+					],
+					"answers" => [
+						[
+							1,
+							2,
+							3,
+							4,
+							5
+						],
+						[
+							"А",
+							"Б",
+							"В"
+						]
+					]
+				]
 			]),
 			"question_id" => 31
 		],
@@ -413,9 +505,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"диамагнетик",
-				],
+
 				"answers" => [
 					"парамагнетик",
 					"ферромагнетик",
@@ -426,9 +518,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"парамагнетик",
-				],
+
 				"answers" => [
 					"диамагнетик",
 					"ферромагнетик",
@@ -454,22 +546,124 @@ class AnswerSeeder extends Seeder
 		//////////////////////////////////////////////////////
 		[
 			"answers" => json_encode([
+				"head" => [
+					[
+						"colspan" => 2,
+						"text"=> "ферромагнитные материалы"
+					],
+					[
+						"colspan" => 2,	
+						"text"=> "петля Гистерезиса"
+					],				
+				],
+				"rows" => [
+					[
+						1 => "1",
+						"1file" => "petly1.png",
+						3 => "А",
+						2 => "магнитомягкий материал, электротехническая сталь"
+					],
+					[
+						1 =>"2",
+						"file2" => "petly2.png",
+						3 =>"Б",
+						2 =>"магнитомягкиий материал, пермалой"
+					],
+					[
+						1 =>"3",
+						"file3" => "petly3.png",
+						3 =>"В",
+						2 =>"магнитотвердый материал"
+					],
+				],
 				"right" => [
-					"размагничивание",
+					"312"
 				],
 				"answers" => [
-					"насыщение",
+					"head" => [
+						[
+							"colspan" => 1,
+							"text"=> "А"
+						],
+						[
+							"colspan" => 1,
+							"text" => "Б"
+						],
+						[
+							"colspan" => 1,
+							"text"=> "В"
+						]
+					],
+					"answers" => [
+						[
+							1,
+							2,
+							3
+						]
+						
+					]
 				]
 			]),
 			"question_id" => 41
 		],
 		[
 			"answers" => json_encode([
+				"head" => [
+					[
+						"colspan" => 2,
+						"text"=> "Характеристики магнитного поля"
+					],
+					[
+						"colspan" => 2,
+						"text"=> "формулы"
+					],				
+				],
+				"rows" => [
+					[
+						"А",
+						"Во",
+						"1",
+						"коэрцитивная сила"
+					],
+					[
+						"Б",
+						"Нс",
+						"2",
+						"магнитная индукция насыщения"
+					],
+					[
+						"В",
+						"Вs",
+						"3",
+						"остаточная магнитная индукция"
+					],
+				],
 				"right" => [
-					"размагничивание",
+					"312"
 				],
 				"answers" => [
-					"насыщение",
+					"head" => [
+						[
+							"colspan" => 1,
+							"text"=> "А"
+						],
+						[
+							"colspan" => 1,
+							"text" => "Б"
+						],
+						[
+							"colspan" => 1,
+							"text"=> "В"
+						]
+					],
+					"answers" => [
+						[
+							1,
+							2,
+							3
+						]
+						
+					]
 				]
 			]),
 			"question_id" => 42
@@ -477,9 +671,9 @@ class AnswerSeeder extends Seeder
 		//////////////////////////////////////////////////////////////
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"по часовой стрелке",
-				],
+
 				"answers" => [
 					"против часовой стрелки",
 					"равна нулю",
@@ -490,9 +684,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"против часовой стрелки",
-				],
+
 				"answers" => [
 					"по часовой стрелке",
 					"равна нулю",
@@ -503,9 +697,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"против часовой стрелки",
-				],
+
 				"answers" => [
 					"по часовой стрелке",
 					"равна нулю",
@@ -516,9 +710,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"по часовой стрелке",
-				],
+
 				"answers" => [
 					"против часовой стрелки",
 					"равна нулю",
@@ -529,9 +723,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"явление электромагнитной индукции",
-				],
+
 				"answers" => [
 					"явление взаимоиндукции",
 					"явление магнитострикции",
@@ -542,9 +736,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"явление наведения электродвижущей силы в катушке при изменении тока в ней",
-				],
+
 				"answers" => [
 					"явление наведения электродвижущей силы в проводнике при пересечении им магнитных силовых линий",
 					"явление наведения электродвижущей силы в одной из индуктивно связанных катушек при изменении тока в другой",
@@ -555,21 +749,22 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"e = - L · di/dt",
-				],
+
 				"answers" => [
 					"e = - B · l · v · sin α",
 					"e = - M · di/dt",
-					"e = M · di/dt",				]
+					"e = M · di/dt",				
+				]
 			]),
 			"question_id" => 49
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"увеличится",
-				],
+
 				"answers" => [
 					"уменьшится",
 					"не изменится",				
@@ -579,9 +774,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"еi = 3cos1000t, B",
-				],
+
 				"answers" => [
 					"еi = 3sin1000t, B",
 					"еi = 0,003cos1000t, B",
@@ -592,9 +787,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [
+				"right" => 
 					"явление самоиндукции",
-				],
+
 				"answers" => [
 					"явление электромагнитной индукции",
 					"явление магнитострикции",
@@ -605,9 +800,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [		
-					"явление взаимоиндукции"
-				],
+				"right" => 	
+					"явление взаимоиндукции",
+
 				"answers" => [
 					"явление электромагнитной индукции",
 					"явление магнитострикции",
@@ -618,9 +813,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [		
-					"согласное включение катушек, L = 16 мГн"
-				],
+				"right" => 	
+					"согласное включение катушек, L = 16 мГн",
+
 				"answers" => [
 					"встречное включение катушек, L = 10 мГн",
 					"согласное включение катушек, L = 13 мГн",
@@ -631,9 +826,9 @@ class AnswerSeeder extends Seeder
 		],
 		[
 			"answers" => json_encode([
-				"right" => [	
+				"right" => 
 					"встречное включение катушек, L = 10 мГн",	
-				],
+
 				"answers" => [
 					"согласное включение катушек, L = 16 мГн",
 					"согласное включение катушек, L = 13 мГн",

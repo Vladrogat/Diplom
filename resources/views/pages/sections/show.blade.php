@@ -1,10 +1,10 @@
 @extends('layouts.home')
 
-@section('title', $section["name"])
+@section('title', $section['name'])
 
 @section('content')
 
-    <h1>{{$section["name"]}}</h1>
+    <h1>{{ $section['name'] }}</h1>
     <div class="description">
         <p class="text">
             <span>
@@ -16,13 +16,13 @@
                 вопросы с вводом ответа выделяется 1 минута<br>
                 Оценивание происходит по числу правильных ответов<br>
                 3 - 50% - 60%<br>
-                4 - 70% - 80%<br>
-                5 - 90% - 100%<br>
+                4 - 61% - 80%<br>
+                5 - 81% - 100%<br>
             </span>
         </p>
 
     </div>
-    <form action="{{route("question.index", $section)}}" method="get">
+    <form action="{{ route('question.index', $section) }}" method="get">
         <button type="submit" class="btn btn-start btn-primary start-test">
             Начать
         </button>

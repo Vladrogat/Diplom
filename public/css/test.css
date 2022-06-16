@@ -132,9 +132,13 @@ form {
 
 /*Стили элементов формы*/
 .var-group {
+	justify-content: center;
 	padding-bottom: 10px;
 	margin-left: 20px;
 }
+
+
+
 
 .var-item {}
 
@@ -226,6 +230,12 @@ progress.timer-progress {
 	}
 }
 
+.disabled {
+	pointer-events: none;
+
+	/* for "disabled" effect */
+	opacity: 0.5;
+}
 
 
 
@@ -236,6 +246,66 @@ progress.timer-progress {
 	height: 100%;
 }
 
-.question-img {}
+.question-img {
+	max-width: 300px;
+	max-height: 200px;
+	min-width: 200px;
+	min-height: 150px;
+}
 
-.label-img {}
+.label-img {
+	max-width: 200px;
+	max-height: 250px;
+	min-width: 200px;
+	min-height: 150px;
+}
+
+
+
+
+table.table-test {
+	border-radius: 20px;
+
+}
+
+
+.table-test th,
+.table-test td {
+	border-bottom: 2px solid rgb(70, 232, 253);
+	padding: 10px 5px;
+
+	/*color: black;
+	background: #ffffff;
+	padding: 5px;
+	border: 2px solid #adadad;*/
+}
+
+.table-test th {
+	padding: 10px;
+}
+
+table.table-test.variant {
+	width: 100%;
+	margin: 5px 0 10px 0;
+}
+
+table.table-test.answer,
+.answer th,
+.answer td {
+	min-width: 80px;
+	font-size: calc(var(--index) * .7);
+}
+
+@media (max-width: 425px) {
+	.label-img {
+		max-width: 50px;
+		max-height: 200px;
+
+	}
+}
+
+@media (max-width: 1199.98px) {
+	.form-check-inline {
+		display: block;
+	}
+}

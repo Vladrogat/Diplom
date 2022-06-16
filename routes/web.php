@@ -31,8 +31,11 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/theory', [PageController::class, "theory"])->name('theory');
 
     Route::controller(QuestionController::class)->group(function () {
-	Route::get('chapters/{chapter}/get_questions',  "indexChapter")->name("question.indexChapter");
+		Route::get('chapters/{chapter}/get_questions',  "indexChapter")->name("question.indexChapter");
+		Route::post('chapters/{chapter}/question/result', "resultChapter")->name("question.resultChapter");
+        Route::get('chapters/{chapter}/questions', "showChapter")->name("question.showChapter");
 
+		
         Route::get('sections/{section}/get_questions',  "index")->name("question.index");
         Route::get('sections/{section}/questions', "show")->name("question.show");
         Route::post('sections/{section}/question/result', "result")->name("question.result");

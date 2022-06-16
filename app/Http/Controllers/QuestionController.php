@@ -33,6 +33,12 @@ class QuestionController extends Controller
 		}
 		return $keys;
 	}
+
+	function get_data_table($data)
+	{
+		dd($data);
+	}
+
 	/**
 	 * Получение вопросов по данному разделу
 	 *
@@ -69,20 +75,27 @@ class QuestionController extends Controller
 					* Формирование массива вариантов вопроса
 					*/
 					$var = [];
-					if ( is_array($answers["right"])) {
-						$var = array_merge($var, $answers["right"]);
+
+					if (!empty($answers["head"])) {
+						$var = $answers;
+						$varieble[$question["id"]] = $var;
 					} else {
-						$var[] = $answers["right"];
-					}
-					if (!empty($answers["answers"])) {
+						if ( is_array($answers["right"])) {
+							$var = array_merge($var, $answers["right"]);
+						} else {
+							$var[] = $answers["right"];
+						}
+						if (!empty($answers["answers"])) {
 						$answers["answers"] = $this->shuffle_assoc(array_unique($answers["answers"]));
 						$var = array_merge($var, array_splice($answers["answers"], 0, 4 - count($var)));
+						}
+						try {
+							$varieble[$question["id"]] = $this->shuffle_assoc(array_unique($var));
+						} catch (\Exception $x) {
+							dd($var);
+						}
 					}
-					try {
-						$varieble[$question["id"]] = $this->shuffle_assoc(array_unique($var));
-					} catch (\Exception $x) {
-						dd($var);
-					}
+	
 				}
 			}			
 		}
@@ -98,7 +111,7 @@ class QuestionController extends Controller
 		];
 		Session::put("data", $data);
 
-		return redirect()->route("question.show", $section);
+		return redirect()->route("question.showChapter", $chapter);
 	}
 
 	/**
@@ -135,20 +148,27 @@ class QuestionController extends Controller
 				* Формирование массива вариантов вопроса
 				*/
 				$var = [];
-				if ( is_array($answers["right"])) {
-					$var = array_merge($var, $answers["right"]);
+
+				if (!empty($answers["head"])) {
+					$var = $answers;
+					$varieble[$question["id"]] = $var;
 				} else {
-					$var[] = $answers["right"];
+					if ( is_array($answers["right"])) {
+						$var = array_merge($var, $answers["right"]);
+					} else {
+						$var[] = $answers["right"];
+					}
+					if (!empty($answers["answers"])) {
+						$answers["answers"] = $this->shuffle_assoc(array_unique($answers["answers"]));
+						$var = array_merge($var, array_splice($answers["answers"], 0, 4 - count($var)));
+					}
+					try {
+						$varieble[$question["id"]] = $this->shuffle_assoc(array_unique($var));
+					} catch (\Exception $x) {
+						dd($var);
+					}
 				}
-				if (!empty($answers["answers"])) {
-					$answers["answers"] = $this->shuffle_assoc(array_unique($answers["answers"]));
-					$var = array_merge($var, array_splice($answers["answers"], 0, 4 - count($var)));
-				}
-				try {
-					$varieble[$question["id"]] = $this->shuffle_assoc(array_unique($var));
-				} catch (\Exception $x) {
-					dd($var);
-				}
+
 			}
 		}
 		if (empty($questions)) {
@@ -161,12 +181,18 @@ class QuestionController extends Controller
 			"questions" => $questions,
 			"vars" => $varieble,
 		];
-		//dd($data);
 		Session::put("data", $data);
-
 		return redirect()->route("question.show", $section);
 	}
 
+	public function showChapter(Chapter $chapter)
+	{
+		/*
+		* Получение данных
+		*/
+		$data = Session::get("data");
+		return PageController::viewer("pages.questions.indexChpater", compact("chapter", "data"));
+	}
 	public function show(Section $section)
 	{
 		/*
@@ -176,7 +202,7 @@ class QuestionController extends Controller
 		return PageController::viewer("pages.questions.index", compact("section", "data"));
 	}
 
-	public function result(Request $request, Section $section)
+	public function resultChapter(Request $request, Chapter $chapter)
 	{
 		$points = 0;
 		$answers = $request["answers"];
@@ -188,6 +214,17 @@ class QuestionController extends Controller
 			try {
 				$right = json_decode($question->answers->answers, true)["right"];
 			} catch (\Exception $e) {}
+
+			if( $question["idTypeQuestion" ] == 4 ){
+				$answer = [];
+				foreach($answers[$question["id"]] as $row) {
+					$answer[] = implode($row);
+				}
+				if($answer == $right) {
+					$points++;
+				}
+			}
+
 			// множетвенный ответ
 			if (is_array($answers[$question["id"]])) {
 				// получение цености кажого варианта
@@ -201,17 +238,17 @@ class QuestionController extends Controller
 				}
 				}
 				if ($points < 0 ) {
-				$points = 0;
+					$points = 0;
 				}
 			} else {
-
 				if ($answers[$question["id"]] == $right) {
-				$points++;
+					$points++;
 				}
 			}
 			}
 		}
 		}
+
 		/*
 		* Оценивание
 		*/
@@ -219,9 +256,100 @@ class QuestionController extends Controller
 		$grade = 2;
 		if ($percent >= 50 && $percent < 60) {
 			$grade = 3;
-		} elseif ($percent >= 70 && $percent < 80 ) {
+		} elseif ($percent >= 70 && $percent < 90 ) {
 			$grade = 4;
-		} elseif ($percent >= 90 && $percent < 100 ) {
+		} elseif ($percent >= 90 && $percent <= 100 ) {
+			$grade = 5;
+		}
+		/*
+		* Запись результата в бд
+		*/
+		$result = Result::where("user_id", "=", Auth::id())->where("chapter_id", "=", $chapter["id"]);
+		if ($result->first()) {
+		$result->update([
+			"time" => $request["time"],
+			"points" => $points . " / " . count($data["questions"]),
+			"grade" => $grade,
+			"result" => json_encode([
+			"options" => $data["vars"],
+			"answers" => $answers,
+			])
+		]);
+		} else {
+		$section = Section::where("idChapter",  "=", $chapter["id"])->first();
+		Result::factory(1)->create([
+			"isFinal" => true,
+			"user_id" => Auth::id(),
+			"chapter_id" => $chapter["id"],
+			"section_id" => $section,
+			"time" => $request["time"],
+			"points" => $points . " / " . count($data["questions"]),
+			"grade" => $grade,
+			"result" => json_encode([
+				"options" => $data["vars"],
+				"answers" => $answers,
+			]),
+		]);
+		}
+		return redirect(route("profile", Auth::user()));
+	}
+	public function result(Request $request, Section $section)
+	{
+		$points = 0;
+		$answers = $request["answers"];
+		$data = Session::get("data");
+		if (!empty($answers)) {
+		foreach ( $data["questions"] as $question) {
+			$right = '';
+			if (key_exists($question["id"], $answers)) {
+			try {
+				$right = json_decode($question->answers->answers, true)["right"];
+			} catch (\Exception $e) {}
+
+			if( $question["idTypeQuestion" ] == 4 ){
+				$answer = [];
+				foreach($answers[$question["id"]] as $row) {
+					$answer[] = implode($row);
+				}
+				if($answer == $right) {
+					$points++;
+				}
+			}
+
+			// множетвенный ответ
+			if (is_array($answers[$question["id"]])) {
+				// получение цености кажого варианта
+				$score = 1 / count($right);
+				foreach ($answers[$question["id"]] as $answer) {
+				if (in_array($answer, $right)) {
+					unset($right[array_search($answer,$right)]);
+					$points += $score;
+				} else {
+					$points -= $score;
+				}
+				}
+				if ($points < 0 ) {
+					$points = 0;
+				}
+			} else {
+				if ($answers[$question["id"]] == $right) {
+					$points++;
+				}
+			}
+			}
+		}
+		}
+
+		/*
+		* Оценивание
+		*/
+		$percent = $points * 100 / count($data["questions"]);
+		$grade = 2;
+		if ($percent >= 50 && $percent <= 60) {
+			$grade = 3;
+		} elseif ($percent >= 61 && $percent < 81 ) {
+			$grade = 4;
+		} elseif ($percent >= 81 && $percent <= 100 ) {
 			$grade = 5;
 		}
 		/*
@@ -240,10 +368,12 @@ class QuestionController extends Controller
 		]);
 		} else {
 		Result::factory(1)->create([
+			"isFinal" => false,
 			"user_id" => Auth::id(),
+			"chapter_id" => $section["idChapter"],
 			"section_id" => $section["id"],
 			"time" => $request["time"],
-			"points" => $points,
+			"points" => $points . " / " . count($data["questions"]),
 			"grade" => $grade,
 			"result" => json_encode([
 				"options" => $data["vars"],

@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('results', function (Blueprint $table) {
+			$table->boolean("isFinal");
             $table->foreignId("user_id")->constrained("users")
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+			$table->foreignId("chapter_id")->constrained("chapters")
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->foreignId("section_id")->constrained("sections")
@@ -25,7 +29,7 @@ return new class extends Migration
             $table->string("points");
             $table->json("result");
             $table->timestamps();
-            $table->primary(["user_id", "section_id"]);
+            $table->primary(["user_id", "isFinal", "section_id"]);
         });
     }
 
